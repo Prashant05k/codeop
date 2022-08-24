@@ -1,0 +1,354 @@
+
+---------------------------------------------------------------------------------------------------
+"use strict"; Defines that JavaScript code should be executed in "strict mode".
+You can use strict mode in all your programs. It helps you to write cleaner code, like preventing you from using undeclared variables.
+
+Data types in javascript-
+
+Primitive
+Number
+String 
+Boolian
+null
+undefined
+
+Reference Data type-
+Array- Array is data structure that contains list of elements of same data types.
+Objects - Object is an collection of key-value pairs.Each key-value pair is called a property.
+function-  Set of statements that performs a task. it should take some input and return an output
+Not defined-It means a variable declared, but no value has been assigned. undefined is type
+null- Null in JavaScript is an assignment value. You can assign it to a variable. null is obeject.
+
+Array Mehthods-
+forEach- The arr.forEach method allows to run a function for every element of the array.
+Map- Map Method calls a callback function on every element of an array and returns a new array 
+Reduce- Method executes a reducer function (that you provide) on each element of the array, resulting in a single output value.
+Filter-  Returns a new array of filter elements that meet a certain condition.
+Find-  The find method looks for a single (first) element that makes the function return true.
+Sort- object.sort(a,b=>a-b)- sorts the array in place, changing its element order.
+arr.push(...items) – adds items to the end,
+arr.pop() – extracts an item from the end,
+arr.shift() – extracts an item from the beginning,
+arr.unshift(...items) – adds items to the beginning.
+arr.reverse()- The method reverses the order of elements in arr.
+Array.isArray(arr) checks arr for being an array.
+
+forEach vs map: The main difference between map and forEach is that the map method returns a new array by applying the callback function on each element of an array, while the forEach method doesn't return anything.
+
+Classes-   
+constructor- The constructor() method is a special method for creating and initializing objects created within a class. 
+
+Strings-
+split- split()- method splits a string into an array of substrings. 
+splice- The splice() method returns the removed item(s) in an array 
+slice- The slice() method returns the selected element(s) in an array,
+concat- creates a new array that includes values from other arrays and additional items.
+charAt(position)- Returns the character at the specified position (in Number).
+indexOf- looks for item starting from index from, and returns the index where it was found, otherwise -1.
+LastindexOf- same, but looks for from right to left.
+substr(start, length)	-Returns the characters in a string from specified starting position through the specified number of characters (length).
+substring(start, end)	-Returns the characters in a string between start and end indexes.
+toLocaleLowerCase()	-Converts a string to lower case according to current locale.
+toLocaleUpperCase()	-Converts a sting to upper case according to current locale.
+toLowerCase()	-Returns lower case string value.
+toString()	-Returns the value of String object.
+toUpperCase()	-Returns upper case string value.
+valueOf()- Returns the primitive value of the specified string object.
+
+Math-
+Math.random();
+Math.sqrt(9);    // 3
+Math.pow(3, 10);
+Math.max(2, 3, 2, 90, 23, 566);
+Math.in
+
+Date -The JavaScript date object can be used to get year, month and day.
+To create a date object using the ‘new’ keyword.
+var date = new Date()
+console.log(date.getMonth())
+console.log(date.getHours())
+
+
+Methods
+Description
+get Date ()
+Gets the day of the month
+get Day ()
+Gets the day of the week
+get Month ()
+Gets the month
+get Fullyear ()
+Gets the year
+get Hour ()
+
+ES6 Features-  > Object Destructuring, Template String, Ternary Operator, Let & Const, Hoisting,Default Params,Spread Operator, Rest Operator, IIFE,Callback Functions,Promises, Async/Await,
+                 This keyword, Call, Apply & Bind, Arrow functions, Concise Functions
+                 
+What is ECMAscript-
+ECMA means European Computer Manufacturer’s Association
+ECMAScript is a Standard for a scripting languages.
+Javascript are based on the ECMAScript standard.
+
+Object Destructuring- The object destructuring is a useful JavaScript feature to extract properties 
+from objects and bind them to variables.
+
+Template String- It allows us to create strings that contain dynamic literals.
+Ternary Operator-if and else statements
+
+
+var,Let & Const-
+Var- The scope of the var keyword is the global or function scope. It means variables defined outside the function can be accessed globally,
+       and variables defined inside a particular function can be accessed within the function. 
+Let-  The scope of a let variable is only block scoped and it is mutable.
+Const-The user cannot update the const variable once it is declared. 
+
+This keyword- In a method, this refers to the owner object.
+              In a function, this refers to the globalobject.
+              
+
+Hoisting-Hoisting is JavaScript's default behavior of moving all declarations
+         to the top of the current scope Variables defined with let and const are hoisted to the top of the block, but not initialized
+
+How to stop hoisting?
+Hoisting may result into bugs
+To avoid hoisting-
+Use JavaScript strict mode, using the "use strict" directive at top; JavaScript strict mode does not allow undeclared variables.
+Use newer methods of defining. Hoisting does not occur with let or const, using them will increase the chances of your code being bug free (a lot).
+Declare all the variables at top!!
+
+Spread Operator-To make Copy/Replica of Reference Data Types and also used for string concateniton 
+Rest Operator-to accept an indefinite number of arguments as an array
+
+IIFE ()- An IIFE (Immediately Invoked Function Expression) is a JavaScript function that runs as soon as it is defined. 
+
+Default Params- Fefault function parameters allow you to initialize named parameters with default values if no values or undefined are passed into the function.
+
+Consize function-
+(param1, param2) =>param1+param2
+It doesn’t have the function keyword. There is only => between the parameters and function body and if there is single parameter than it can also be written like this −param1=>param1*2
+----------------------------------------------------------------------------arrow function ----------------------------
+what are arrow function- Arrow function is one of the features introduced in the ES6 version of JavaScript.
+                         It allows you to create functions in a cleaner way compared to regular functions.             -
+why arrow functions used?
+This arrow function reduces lots of code and makes the code more readable.
+Arrow function syntax automatically binds “this” to the surrounding code’s context.
+Writing the arrow => is more flexible as compared with the writing function keyword.
+
+
+An arrow function expression is a compact alternative to a traditional function expression, but is limited and can't be used in all situations.
+There are differences between arrow functions and traditional functions, as well as some limitations:
+Arrow functions don't have their own bindings to this, arguments or super, and should not be used as methods.
+Arrow functions aren't suitable for call, apply and bind methods, which generally rely on establishing a scope.
+Arrow functions cannot be used as constructors.
+
+function expression: const sayHiStranger = function () {return 'Hi, stranger!'}
+fat arrow notation: const sayHiStranger = () => 'Hi, stranger'
+
+Fat arrow function −
+
+let add = (a,b) =>{return a+b;}
+
+Consice arrow function:
+
+let add = (a,b)=>a+b;
+If one parameter only −
+
+let add = a=>a+22;
+
+Difference bewteen normal function and arrow function?
+Syntax
+Arrow functions do not have an arguments binding.
+Unlike regular functions, arrow functions do not have their own this.
+Arrow functions can never have duplicate named parameters, whether in strict or non-strict mode.
+
+function abc(){
+    this.fn = 'normal'
+    console.log(this)
+}
+const arrow = ()=>{
+    this.fn = 'arrow'
+    console.log(this)
+}
+new abc()
+new arrow()
+
+abc {fn: 'normal'}
+Code.js:15 Uncaught TypeError: arrow is not a constructor
+---------------------------------------------------------------------synchronus--- asynchronus-----------------------------------------------
+
+Callback Functions-A callback function is a function that is passed as an argument to another function,to be “called back” at a later time.
+
+Since JS is synchronus. To achive asynchronus nature Promises and Async/Await were introduces.
+
+Promises-A promise is an object that may produce a single value some time in the future: either a resolved value, or a reason that it’s not resolved 
+states in Promises- ResoLve, rejected, and penidng
+
+Async/Await -Async/Await makes it easier to write promises. The keyword 'async' before a function makes the function return a promise, always. 
+And the keyword await is used inside async functions, which makes the program wait until the Promise resolves.
+
+SetTimeOut()-allows us to run a FUNCTION ONCE, after the interval of time
+
+SetInterval()- allows us to run a function repeatedly, starting after the interval of time, then repeating continuously at that interval.ClearTimeout:
+const set = setInterval(() => console.log('interval'), 500)
+setTimeout(() => {
+    clearInterval(set)
+}, 5000);
+
+
+ClearTimeout()-This method is used to cancel a setTimeout().  Inside the method you have to reference the timeoutID.
+clearTimeout(timerId)
+---------------------------------------------------------------------------CALL, APPLY, BIND-------------------------------------------------------
+Call, Apply, Bind-
+To borrow another object’s methods 
+Both call and apply invoke a function. 
+
+what is bind? how to use?
+We can bind an object to a common function, so that the function gives different results when its need.
+It takes an object as an first argument and creates a new function.
+
+-------------------------------------------------------------local storage vs session storage vs cookies---------------------------------------------------------------------------------------------------------																																																											
+local storage vs session storage vs cookies?
+The data is saved locally only and can’t be read by the server, which eliminates the security issue.
+sessionStorage is similar to localStorage ; the difference is that while data in localStorage doesn't expire, data in sessionStorage is cleared when the page session ends. ...
+A page session lasts as long as the tab or the browser is open, and survives over page reloads and restores.
+
+-------------------------------------------------------------------- Prototypes -------------------------------------------------																																					Prototype property is basically an object (also known as Prototype object), where we can attach methods and properties in a prototype object, which enables all the other objects to inherit these methods and properties.	Javascript is a prototype based language, so, whenever we are creating a function using javascript, javascript engine adds a prototype property inside a function,
+	
+
+------------------------------------------------------------Inheritance--------------------------------------------------------------------------------------
+
+Inheritance- Is useful for code reusability: reuse properties and methods of an existing class when you create a new class
+
+Classes: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+Classes are a template for creating objects. They encapsulate data with code to work on that data. Classes in JS are built on prototypes 
+
+Encapsulation-
+JavaScript Encapsulation
+The JavaScript Encapsulation is a process of binding the data (i.e. variables) with the functions acting on that data. It allows us to control the data and validate it. To achieve an encapsulation in JavaScript: -
+Use var keyword to make data members private.
+Use setter methods to set the data and getter methods to get that data.
+The encapsulation allows us to handle an object using the following properties:
+Read/Write - Here, we use setter methods to write the data and getter methods read that data.
+Read Only - In this case, we use getter methods only.
+Write Only - In this case, we use setter methods only.
+--------------------------------------------------------------Event Capturing  and event bubbling----------------------------------------------------------------------------------------------------
+Throttling- Throttling is a technique in which, no matter how many times the user fires the event, the attached function will be executed only once in a given time interval.
+Debouncing- No matter how many times the user fires the event, the attached function will be executed only after the specified time once the user stops firing the event.
+
+What is Event Capturing  and event bubbling?
+	turing is opposite to event bubbling, where in event capturing, an event moves from the outermost element to the target.
+Otherwise, in case of event bubbling, the event moves from the target to the outermost element in the file.
+Event Capturing is performed before event bubbling but capturing is used very rarely because event bubbling is sufficient to handle the event flow.
+
+EventBubbling, ,Event Capturing, Stop Propogatio, Immediate Propogation
+event delegation
+Event Delegation is basically a pattern to handle events efficiently. Instead of adding an event listener to each and every similar element, we can add an event listener to a parent element and call an event on a particular target using the .target property of the event object.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Strict mode- 
+React.StrictMode is a helper functionality provided by React which allows us to write better React codes. It provides visual feedback in the form of warnings
+if we don’t follow the React guidelines, but it works only in the development mode.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+What is JSON
+JSON (JavaScript Object Notation) is a lightweight format that is used for data interchanging.
+It is based on a subset of JavaScript language in the way objects are built in JavaScript.
+-------------------------------------------------------------------------------------------------------------------------------------
+ 
+
+SSR vs CSR?
+SSR- In SSR, when the user makes a request to the webpage, the server prepares the HTML page by fetching the required data from 
+the database and sends to the user's machine over the internet. Then the browser presents all the requested actions on the user UI.
+CSR -Client-side rendering means that a website’s JavaScript is rendered in your browser, rather than on the website’s server. So now, 
+     instead of getting all the content from the HTML doc, only the required HTML with the JS files will be rendered. The rendering time
+     for the first upload is a bit slow. However, the next page loads will be very fast as we don't have to wait for every page render.
+      Moreover, there is no need to reload the entire UI after every call to the server. The client-side framework manages to update UI with 
+      changed data by re-rendering only that particular DOM element.
+
+
+What is local Scope and global scope? https://www.w3schools.com/js/js_scope.asp
+var b;
+function abc(){ //local
+    var a=10;//local
+    let c=10;//local
+    console.log(this)//scope is local but this is global
+    console.log('ls')//local
+    console.log(a)//local
+    {
+        let a=5; //block
+        console.log(a) //block
+    }
+}
+console.log(this) //global
+abc() //global
+
+what is pure function?
+A Pure Function is a function (a block of code) that always returns the same result if the same arguments are passed. It does not depend on any state or data change during a program’s execution. Rather, it only depends on its input arguments.
+function calculateGST( productPrice ) {
+    return productPrice * 0.05;
+}
+var tax = 20;
+function calculateGST( productPrice ) {
+    return productPrice * (tax / 100) + productPrice;
+}
+
+
+synchronus,asynchronus, callback, callback hell: https://www.geeksforgeeks.org/what-is-callback-hell-in-node-js/
+
+																																																											
+what is differnce between http1 and http2?
+HTTP2 is much faster and more reliable than HTTP1. 
+HTTP1 loads a single request for every TCP connection, while HTTP2 avoids network delay by using multiplexing.
+
+
+
+
+
+
+HTTP status request?
+
+What is cors error? CROSS ORIGIN RESOURCE SHARING
+is a mechanism to restrict users from accessing shared resources. This is not an error but a security measure to secure users or the website which you are accessing from a potential security breach.
+
+			
+																																																																							
+map vs foreach ? returns an array, does not return only executes for every element of an array
+
+how to split an array? slice(start, end)
+
+how to stop foreach loop?
+
+how to map array of objects 
+
+strict mode
+window.document.body
+promises chaining: https://javascript.info/promise-chaining
+argu parameter
+promises.all : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
+call by reference, call by value
+shallow copy and deep copy
+
+
+HTTP status codes?
+HTTP response status codes indicate whether a specific HTTP request has been successfully completed. Responses are grouped in five classes:
+Informational responses (100–199)
+Successful responses (200–299)
+Redirection messages (300–399)
+Client error responses (400–499)
+Server error responses (500–599)
+
+200: OK
+201 Created
+204 No Content
+304 Not Modified
+400 Bad Request
+401 Unauthorized
+403 Forbidden
+404 Not Found
+409 Conflict
+500 Internal Server Error
+
+
+What is box model in CSS?
+Difference between div and span?
+display none vs visibily hidden?	

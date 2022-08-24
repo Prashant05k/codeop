@@ -1,0 +1,11 @@
+git config --global user.name 'Prashant Gupta'
+git config --global user.email prashantguptarlj1@gmail.com
+git config --global core.editor 'code --wait' //set vs code as default editor
+git config --global -e //opens the default editor with the global settings in vs code
+
+git config --Helper
+git confit --h
+
+git init
+ls -a
+git -rf .git

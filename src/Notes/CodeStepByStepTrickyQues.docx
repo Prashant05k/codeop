@@ -1,0 +1,111 @@
+(function(){
+    var a=b=3
+})();
+
+console.log(b) 
+console.log(typeof b) 
+console.log(typeof a) 
+console.log(a)
+//3 number undefined a is not defined
+
+
+
+
+function foo(){
+    return //interpreter automatically inserts ; after every statement
+    {
+        name: 'prash'
+    }
+}
+console.log(foo()) //undefined
+
+
+console.log(1+'2'+'2')  //122
+console.log(1+ +'2'+'2') //32
+console.log(1+ +'2'+ +'2') //5
+console.log(1+ -'2'+'2'+ '2') //-122
+console.log('a' - 'b' + '2') //NaN2
+console.log('a' - 'b' + 2) //NaN
+
+
+var a=0;
+function b(){
+    a=10; //local scope
+    return 
+    var a=function(){} //interpreter will never enter here after it returns the value.
+}
+b();
+console.log(a) //0
+
+var a=0;
+function b(){
+    a=10; //local scope
+    return 
+    a=function(){} //interpreter will never enter here after it returns the value.
+}
+b();
+console.log(a) //10
+
+var a=0;
+function b(){
+    a=10; //local scope
+    a=function(){} //interpreter will never enter here after it returns the value.
+}
+b();
+console.log(a) //fn(){}
+
+
+console.log({} === {})//false: memory location is diff for both the object
+
+let a={}; //it is pointing to the memory loc of the ob created for variable a
+let b={}; //it is pointing to the memory loc of the ob created for variable b
+console.log(a === b) //false: memory location is diff for both the object
+
+let c={}//it is pointing to the memory loc of the ob created for variable c
+let d=c//it is pointing to the same memory loc to which var c is pointing
+console.log(c === d)//true: both the var are pointing to the same mem loc
+
+
+
+
+function test(){
+    function foo(){//gets hoisted on top
+        return 100
+    }
+    return foo()
+    function foo(){//get overridden 
+        return 10
+    }
+}
+
+console.log(test()) //10
+
+
+
+let task = new Promise((resolve, reject) => {
+    setTimeout(()=>{
+        reject('failure')
+        resolve('success')
+    },1000)
+})
+task
+.finally(() => console.log('finally'))
+.then(res => console.log(res), err => console.log(err))
+console.log('HI')
+
+
+closure
+function createBase(a){
+    return function(b){
+        return console.log(a+b)
+    }
+}
+
+var addSix = createBase(6);
+addSix(10); //should return 16
+addSix(21); //should return 27
+
+let x=10;
+y=40;
+x=(y+=20, y)//comma operator
+console.log(x) //60

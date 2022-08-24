@@ -1,0 +1,325 @@
+const obj = {
+    name: 'prash',
+    details: {
+        age: 24
+    }
+}
+const obj1 = {
+    ...obj
+}
+obj1.details.age = 28
+console.log(obj1)
+
+
+const user = {
+    name: 'nisha',
+    location: {
+        city: 'delhi',
+        country: 'india'
+    }
+}
+const copy = {...user}
+
+copy.location.city = 'goa'
+console.log('og: ', user.location)
+console.log('cp: ', copy.location)
+
+
+const a=1
+delete a;
+console.log(a)
+
+
+
+const fn = (function(a){
+    delete a;
+    return a
+})(5);
+console.log(fn) //5
+
+
+const user = {
+    name: 'Prash',
+    age: 24,
+    'like this video': true
+};
+console.log(user['like this video']) //true
+
+
+
+//add dynamic key and value pair to an obj
+const property = 'firstname'
+const name = 'Prash'
+const username = {
+    [property]: name
+}
+console.log(username)
+
+
+
+const det = {
+    name: 'Prashant',
+    age: 24,
+    isTotallyAwesome: true,
+}
+for(let i in det){
+    console.log(det[i])
+}
+
+
+const obj1 = {
+    a: 'one',
+    b: 'two',
+    a: 'three'
+}
+console.log(obj1)
+
+
+
+
+//create a fn myltiplyByTwo(obj) that myultiiplies all numeric property values of nums by 2.
+let nums = {
+    a: 100,
+    b: 200,
+    title: 'my nums'
+}
+
+function myltuplyNumeric(obj){
+    for(let i in obj){
+        if(typeof(obj[i]) == 'number'){
+            obj[i] *= 2 
+        }
+    }
+}
+myltuplyNumeric(nums)
+console.log(nums)
+
+
+//op
+const a = {};
+const b = {key: 'a'}
+const c = {key: 'c'}
+
+a[b] = 123; //fails to convert {key: 'a'} to key for a obj.
+a[c] = 456;
+console.log(a[b])
+
+
+
+//q: what's JSON.stringify and JSON.parse
+
+const use = {
+    name: 'prash',
+    age: 24
+}
+let op = JSON.stringify(use) //convert to string
+console.log(op)
+console.log(JSON.parse(op))//convert back to obj
+//usecase: storing it in the local storage
+
+localStorage.setItem('test', use)
+console.log(localStorage.getItem('test'))
+localStorage.setItem('test', op)
+console.log(localStorage.getItem('test'))//{"name":"prash","age":24}
+
+
+const str = 'hello'
+console.log([...str])//['h', 'e', 'l', 'l', 'o']
+console.log([...'hello'])//['h', 'e', 'l', 'l', 'o']
+
+const settings = {
+    username: 'prash',
+    level: 19,
+    health: 45
+}
+const data = JSON.stringify(settings, ['level', 'health'])
+console.log(data)//{"level":19,"health":45}
+
+
+
+const shape = {
+    radius: 10,
+    diameter(){
+        return this.radius * 2
+    },
+    perimeter: () => 2*Math.PI*this.radius
+}
+
+console.log(shape.diameter())//20
+console.log(shape.perimeter())//NaN
+
+const user1 = {
+    name1: 'Prash',
+    age1: 24
+}
+
+1:
+const name1 = user1.name1;
+const age1 = user1.age1
+console.log(name1, age1)
+
+2:
+const {name1, age1} = user1
+console.log(name1, age1)
+
+3:
+const name1 = 'Prashant Gupta'
+const {name1: myName} = user1
+console.log(myName)
+
+
+
+
+let user = {
+    name: 'Prash',
+    age: 24,
+    fullName: {
+        first: 'Prashant',
+        last: 'Gupta'
+    },
+    address: {
+        city: 'Mumbai',
+        pincode: 400001
+    }
+}
+const {fullName: {first, last}, address: {city, pincode}} = user
+console.log(first, last)
+console.log(city, pincode)
+
+
+
+
+
+function getItems(fruitlist, ...arg, favourite){ //rest operator should always be at the last
+    return [...fruitlist, ...arg, favourite]
+}
+
+
+let c ={greeting: 'Hey'};
+let d;
+d=c;
+c.greeting='hello'
+console.log(d.greeting) //hello //it is not copying d is pointing to the same memory loc where c is pointing
+
+
+//object referencing
+console.log({a:1} == {a:1}) //both are pointing to the another memory space
+console.log({a:1} === {a:1})
+
+
+
+let a={c:1}
+let b={c:1}
+console.log(a == b) //false //call by reference
+console.log(a.c == b.c) //true //call by value
+
+
+
+//call by reference
+let a = {name: 'prash'}
+let b = a
+a=null
+console.log(b)
+
+
+let u1 = {
+    name: 'prash'
+}
+let u2 = {
+    name: 'akash'
+}
+const arr = [u1, u2, u1, {name: 'akash'}]
+
+arr[0].name = 'omkar'
+arr[1].name = 'gupta'
+
+console.log(arr)
+
+
+let person = {name: 'prash'};
+const members = [person];
+person = null;
+person.name = null;
+console.log(members)
+
+
+const value = {num: 10}
+
+const multiply = (x = {...value}) => {
+    console.log((x.num *= 2))
+};
+
+multiply() //spread operator is cloning the object
+multiply()
+multiply(value) //call by reference hence, updating the og values
+multiply(value)
+//20 20 20 40
+
+
+
+
+function change(person){
+    person.age = 25; //call by reference
+    person = { //changed the reference
+        name: 'john',
+        age: 50
+    }
+    return person;
+}
+
+const personObj1 = {
+    name: 'alex',
+    age: 30
+}
+const personObj2 = change(personObj1);
+console.log(personObj1);
+{
+    name: 'Alex',
+    age: 25
+}
+console.log(personObj2);
+{
+    name: 'john',
+    age: 50
+}
+
+
+//shallow-copy-and-deep-copy
+//https://www.geeksforgeeks.org/what-is-shallow-copy-and-deep-copy-in-javascript/
+
+//deep copy
+let obj = {name: 'prash', age: 24}
+
+//1
+const objClone = Object.assign({}, obj)
+objClone.name = 'akash'
+console.log(obj, objClone)
+
+//2
+const objClone = JSON.parse(JSON.stringify(obj))
+objClone.name = 'akash'
+console.log(obj, objClone)
+
+//3
+const objClone = {...obj}
+objClone.name = 'akash'
+console.log(obj, objClone)
+
+
+//shallow copy
+var employee = {
+    eid: "E102",
+    ename: "Jack",
+    eaddress: "New York",
+    salary: 50000
+}
+console.log("Employee=> ", employee);
+var newEmployee = employee;    // Shallow copy
+console.log("New Employee=> ", newEmployee);
+ 
+console.log("---------After modification----------");
+newEmployee.ename = "Beck";
+console.log("Employee=> ", employee);
+console.log("New Employee=> ", newEmployee);
+// Name of the employee as well as
+// newEmployee is changed.

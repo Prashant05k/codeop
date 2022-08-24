@@ -1,0 +1,71 @@
+let a = 10; //script scope
+
+var b = 5; //global scope
+
+function c() {
+  //local scope
+  let d = 6; //local scope
+  {
+    let e = 5; //block scope
+  }
+  console.log(a, b);
+}
+c();
+
+{
+  let f = 8; //block scope
+}
+
+
+--------------------------------------------------------------------------------------------
+
+var a = 5;
+console.log(d);
+console.log(b); //function b is undefined and not unaccessible
+{
+  var d = 2; //gets hoisted in global scope
+  let e = 2;
+  console.log(a);
+  console.log(d);
+  function b() { //gets hoisted in block scope (b: fn(){})and hoisted like a fn expression in global scope (b: undefined)
+    console.log("e: ", e);
+  }
+  b();
+}
+b(); //now fn is accessible
+console.log(a);
+console.log(b);
+function c() {
+  console.log(a);
+}
+
+
+-------------------------------------------------------------------------------------------------------------
+
+let a = 10; //script scope
+
+var b = 5; //global scope
+
+function c() {
+  //local scope g: undefined
+  let d = 6; //local scope
+  {
+    //g gets hoisted in block scope with fn definition
+    let e = 5; //block scope
+    function g() {} //block scope
+    g();
+  }
+  //local scope g now gets fn definitions assigned to it
+  console.log(a, b);
+  function f() {
+    console.log(d);
+  }
+  f(); //local scope
+}
+c();
+
+{
+  let f = 8; //block scope
+}
+
+

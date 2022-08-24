@@ -1,0 +1,19 @@
+var x = 23;
+(function(){
+  var x = 43;
+  (function random(){
+    x++;
+    console.log(x);
+    var x = 21;
+  })();
+})();
+
+// Malvika Ghui15:23
+function bigFunc(element){
+  let newArray = new Array(700).fill('♥');
+  console.log(newArray)
+  return newArray[element];
+}
+
+console.log(bigFunc(599)); 
+console.log(bigFunc(670));

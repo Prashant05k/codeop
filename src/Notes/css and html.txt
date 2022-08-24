@@ -1,0 +1,89 @@
+>>> Explain the CSS Box Model and its different elements.
+The CSS box model describes the rectangular boxes that are generated for elements in the document tree and laid out according to the visual formatting model. Each box has a content area (e.g. text, an image, etc.) and an optional surrounding padding, border, and margin areas.
+
+The CSS box model is responsible for calculating:
+
+How much space a block element takes up.
+Whether or not borders and/or margins overlap, or collapse.
+A box’s dimensions.
+Box Model - css interview questions - edureka
+
+The box model has the following rules:
+
+The dimensions of a block element are calculated by width, height, padding, borders, and margin.
+If no height is specified, a block element will be as high as the content it contains, plus padding.
+If no width is specified, a non-floated block element will expand to fit the width of its parent minus padding.
+The height of an element is calculated by the content’s height.
+The width of an element is calculated by the content’s width.
+By default, padding and border are not part of the width and height of an element.
+
+
+>>> What is the z-index in CSS? 
+https://www.youtube.com/watch?v=Uzuq2FGxgK4
+
+The z-index helps specify the stack order of positioned elements that may overlap one another. The z-index default value is zero and can take on either a positive or negative number.
+An element with a higher z-index is always stacked above than a lower index.
+z-index: it will only work for positioned element ex. absolute, relative, fixed, sticky and will not work for by default static.'
+Z-Index can take the following values:
+
+Auto: Sets the stack order equal to its parents.
+Number: Orders the stack order.
+Initial: Sets this property to its default value (0).
+Inherit: Inherits this property from its parent element.
+
+>>>
+Display Position https://developer.mozilla.org/en-US/docs/Web/CSS/position
+position: static;
+position: relative;
+position: absolute;
+position: fixed;
+position: sticky;
+
+>>>
+Doctype html declaration
+All HTML documents must start with a <!DOCTYPE> declaration.
+The declaration is not an HTML tag. It is an "information" to the browser about what document type to expect.
+In HTML 5, the declaration is simple: <!DOCTYPE html>
+
+<!DOCTYPE html>
+
+>>> Flexbox https://www.geeksforgeeks.org/introduction-to-css-flexbox/
+The flexbox or flexible box model in CSS is a one-dimensional layout model that has flexible and efficient layouts with distributed spaces among items to control their alignment structure ie., it is a layout model that provides an easy and clean way to arrange items within a container. Flexbox can be useful for creating small-scales layouts & is responsive and mobile-friendly.
+There are 2 main components of the Flexbox:
+Flex Container: The parent “div” which contains various divisions is called a flex container.
+Flex Items: The items inside the container “div” are flex items.
+
+>>> Visibility and z-index https://www.youtube.com/watch?v=Uzuq2FGxgK4
+visibility: hidden > the space it was taking earlier will be there but this content will be hidden from the viewport | hide the element and show the empty space
+display: none > the space it was taking earlier will be set to null or space will be removed from the viewport. | will hide the element and the space
+
+>>> Q29. Explain The Key Differences Between LocalStorage And SessionStorage Objects.
+The key differences between localStorage and sessionStorage objects are as follows:
+The localStorage object stores the data without an expiry date. However, sessionStorage object stores the data for only one session.
+In the case of a localStorage object, data will not delete when the browser window closes. However, the data gets deleted if the browser window closes, in the case of sessionStorage objects.
+The data in sessionStorage is accessible only in the current window of the browser. But, the data in the localStorage can be shared between multiple windows of the browser.
+
+>>> What is SVG?
+HTML SVG is used to describe the two-dimensional vector and vector or raster graphics. SVG images and their behaviors are defined in XML text files. So as XML files, you can create and edit an SVG image with the text editor. It is mostly used for vector type diagrams like pie charts, 2-Dimensional graphs in an X, Y coordinate system.
+<svg width="100" height="100">
+<circle cx="50" cy="50" r="40" stroke="yellow" stroke-width="4" fill="red" />
+</svg>
+
+>>> What are logical and physical tags in HTML?
+Logical tags are used to tell the meaning of the enclosed text. The example of the logical tag is <strong> </strong> tag. When we enclose the text in the strong tag, it tells the browser that enclosed text is more important than other texts.
+Physical tags are used to tell the browser how to display the text enclosed in the physical tag. Some of the examples of physical tags are <b>, <big>, <i>.
+
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+>>> 
+

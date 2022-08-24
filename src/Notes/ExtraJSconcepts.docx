@@ -1,0 +1,277 @@
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> MEMORY LEAK
+let arr = [];
+for(let i=0; i<1024*1024*108;i++){
+    arr.push(1)
+}
+console.log('done')
+
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CALL BY VALUE 
+
+let u1 = 'kavya'
+let u2 = u1
+u2 = 'kavita'
+console.log(u1, u2)
+
+
+let u1 = 'kavya'
+function updateName(val){
+    val = 'kavita'
+    return val
+}
+console.log(updateName(u1))
+console.log(u1)
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CALL BY REFERENCE
+
+let u1 = {name: 'kavya'}
+let u2 = {}
+u2=u1
+u2.name = 'kavita'
+console.log(u1)
+console.log(u2)
+
+
+let u1 = {name: 'kavya'}
+function updateName(val){
+    val.name = 'kavita'
+    return val
+}
+console.log(updateName(u1))
+console.log(u1)
+
+
+let u1 = ['kavya']
+let u2 = u1
+u2[0] = 'kavita'
+console.log(u1, u2)
+
+
+let u1 = ['kavya']
+function updateName(val){
+    val[0] = 'kavita'
+    return val
+}
+console.log(updateName(u1))
+console.log(u1)
+
+
+
+
+//CALLBACK HELL, PROMISE ALL, PROMISE CHAIN
+
+const promise = new Promise((resolve, reject)=>{
+    if(1) resolve('Success')
+    reject('failure')
+})
+promise.then(res => res+'!')
+.then(res => res + '!')
+.then(res => {throw Error})
+.catch(err => console.log('Error occured in your code'))
+.then(res => res+'!')
+.then(res => console.log(res))
+
+
+
+
+
+
+
+
+const runDirection = (time,direction)=> {
+    return new Promise((resolve, reject) => {
+    console.log(time, direction)
+    if(time < 200) resolve('Success')
+    reject('Failure')
+})}
+
+runDirection(100, "Top")
+.then(()=>runDirection(200, "left"))
+.then(()=>runDirection(300, "Right"))
+.then(()=>runDirection(400, "Bottom"))
+.catch((err) => console.log(err))
+
+
+
+
+function runDirection(time,direction,fn){
+    fn()
+    console.log(time, direction)
+}
+
+runDirection(100, "Top", function () {
+  runDirection(200, "left", function () {
+    runDirection(300, "Right", function () {
+      runDirection(400, "Bottom", function () {});
+    });
+  });
+});
+
+
+
+
+
+const promise1 = new Promise((resolve,reject)=>{
+    if(1) resolve('Success')
+    reject('Error in promise1')
+})
+const promise2 = new Promise((resolve,reject)=>{
+    if(1) resolve('Success')
+    reject('Error in promise2')
+})
+const promise3 = new Promise((resolve,reject)=>{
+    if(0) resolve('Success')
+    reject('Error in promise3')
+})
+const promise4 = new Promise((resolve,reject)=>{
+    if(1) resolve('Success')
+    reject('Error in promise4')
+})
+
+Promise.all([promise1, promise2,promise3,promise4])
+.then(res=>console.log(res))
+.catch(err => console.log(err))
+
+promise1.then(res=>console.log(res)).catch(err=>console.log(err))
+
+setTimeout(() => {
+//   console.log("Task 1 is completed");
+  setTimeout(() => {
+    // console.log("Task 2 is completed");
+    setTimeout(() => {
+    //   console.log("Task 3 is completed");
+      setTimeout(() => {
+        throw new Error('something went wrong!')
+        // console.log("Task 4 is completed");
+      }, 2000);
+    }, 2000);
+  }, 2000);
+}, 2000);
+
+
+
+//PROMISE STATES
+
+const promise = new Promise((resolve, reject) => {
+ setTimeout(()=>{
+    console.log('start')
+    resolve('Success');
+ },3000)
+});
+console.log(promise)
+
+Promise {<pending>}
+[[Prototype]]: Promise
+[[PromiseState]]: "fulfilled"
+[[PromiseResult]]: "Success"
+
+
+Promise {<pending>}
+[[Prototype]]: Promise
+[[PromiseState]]: "rejected"
+[[PromiseResult]]: "failure"
+
+
+[[Prototype]]: Promise
+[[PromiseState]]: "pending"
+[[PromiseResult]]: undefined
+code.js:9 start
+
+
+
+
+// TRICK QUES ON PROMISE
+const promise = new Promise((resolve, reject) => {
+ setTimeout(()=>{
+    console.log('start')
+    reject();
+ },3000)
+});
+// promise.then(()=>console.log('first'))
+// .then(()=>setTimeout(()=>{
+//     console.log('second')
+// },2000))
+// .then(()=>setTimeout(()=>{
+//     console.log('third')
+// },1000))
+
+promise
+  .then(() => console.log("first"))
+  .then(
+    () =>
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log("second");
+          resolve();
+        }, 2000);
+      })
+  )
+  .then(() =>
+    setTimeout(() => {
+      console.log("third");
+    }, 1000)
+  )
+  .catch(()=>console.log('ERror occured'))
+
+
+  >>>>> Encapsulation & Class
+
+  class Student {
+  constructor() {
+    var name;
+    var marks;
+  }
+  getName() {
+    return this.name;
+  }
+  setName(name) {
+    this.name = name;
+  }
+
+  getMarks() {
+    return this.marks;
+  }
+  setMarks(marks) {
+    this.marks = marks;
+  }
+}
+var stud = new Student();
+stud.setName("John");
+stud.setMarks(80);
+document.writeln(stud.getName() + " " + stud.getMarks());
+----------------------------------------------------------------------------
+function Student(name, marks) {
+  var s_name = name;
+  var s_marks = marks;
+  Object.defineProperty(this, "name", {
+    get: function () {
+      return s_name;
+    },
+    set: function (s_name) {
+      this.s_name = s_name;
+    },
+  });
+
+  Object.defineProperty(this, "marks", {
+    get: function () {
+      return s_marks;
+    },
+    set: function (s_marks) {
+      this.s_marks = s_marks;
+    },
+  });
+}
+var stud = new Student("John", 80);
+document.writeln(stud.name + " " + stud.marks);
+
+
+

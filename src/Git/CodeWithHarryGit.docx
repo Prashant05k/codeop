@@ -1,0 +1,80 @@
+git init //to create git repo
+
+touch .gitignore //to do not track the files 
+> error.log //to ignore the tracking of this file
+> *.log //to ignore the tracking of all .log files
+> dir1/ //to ignore the tracking of all directory named with dir1/
+> /dir1/ //to ignore the tracking of outer directory named with dir1/
+> /static/dir1/
+
+git diff //shows the changes made //compares  pwd with staged files
+git diff --staged //to compare the staged files to previous commit
+
+git status
+git log
+git add ./ fileName/ fileName1 fileName2/ *.log 
+
+git commit -m 'message'
+git commit -a -m 'direct commit' //to forcefully commit the tracked file by skipping the staging area and not adding the files in staging area
+
+git clone URL
+git clone URL folderName
+
+//fileName is already staged and committed
+git rm fileName //to delete the file //git auto adds to the staging area
+git mv oldFileName newFileName //to rename the file //git auto adds to the staging area
+
+//add file4.txt to gitignore > modify file4.txt > git status -> git is still tracking the file4.txt
+git rm --cached fileName //to untrack the files / to remove from git index
+
+rm -rf .git
+
+//download repo from internet
+git log -p
+git log -p -3
+git log --stat //to view all previous changes in short
+git log --pretty=oneline // all previous commit messages in oneline
+git log --pretty=short
+git log --since=2.days/weeks/months/years
+
+//https://git-scm.com/docs/pretty-formats -> Placeholders that expand to information extracted from the commit:
+git log --pretty=format:"%h -- %an"
+
+//to change/update the previous latest commit -> modify the file -> add the file
+git commit --amend
+git log -p -1 //verify
+
+git restore --staged fileName //to unstage the file
+git restore fileName //to restore the modified and unstaged file
+
+git checkout -- filename //to restore the file content to the previous commit
+git checkout -f //to restore the dir to the previous commit for multiple file changes
+
+//create repo using github.com
+git remote add origin URL //url: u will get in website under repo
+git remote 
+git remote -v
+//to create SSH key refer -> GitHub: Working with Remote Repositories | Git Tutorials #13 
+
+git push origin master //to push to server
+git push origin branchName //to push branch to server
+git push origin branchName:newBranchName  //to push branch to server with another name
+git push -d origin branchName //to delete branchName from server
+
+git config --global alias.st status
+git config --global alias.last 'log -p -1'
+
+git checkout -b dev //to create new branch dev
+git checkout dev //to switch to another branch
+git branch //to list all the branch
+git branch -v //to list all the branch and their latest commits
+
+git merge branchName //go to master branch and and merge branchName to master branch
+
+git branch --merged //to view already merged branches
+git branch --no-merged //to view not already merged branches
+git branch -d branchName //to delte the branch -> gives error if branch is not merged
+git branch -D branchName //no error even if branch is not merged and branch gets deleted
+
+
+

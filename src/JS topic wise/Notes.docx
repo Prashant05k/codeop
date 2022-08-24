@@ -1,0 +1,40 @@
+//DataTypes
+let primitiveDataType = ["hello", 1234, true, null, undefined];
+
+for (let i of primitiveDataType) {
+  console.log(i, typeof i);
+}
+
+let referenceDataType = [
+  [1, 2, 3],
+  { name: "prashant", age: 24 },
+  function () {},
+];
+
+for (let i of referenceDataType) {
+  console.log(i, typeof i);
+}
+
+//Conversion & Coercion
+let ConvertTo = [
+  "hello",
+  1234,
+  true,
+  [1, 2, 3],
+  { name: "prashant", age: 24 },
+  function () {},
+];
+
+for (let i of ConvertTo) {
+  console.log(i, String(i), typeof String(i));
+  // console.log(i, i.toString(), typeof i.toString());
+}
+for (let i of ConvertTo) {
+  console.log(i, Number(i), typeof Number(i));
+}
+for (let i of ConvertTo) {
+  console.log(i, JSON.stringify(i), typeof JSON.stringify(i));
+}
+
+
+                                                                                                      

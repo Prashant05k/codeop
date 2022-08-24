@@ -1,0 +1,361 @@
+Whats is deiffernece between Librarary and Framwork?
+A library is just a collection of class definitions.
+framework  collection of libraries implementing a particular methodology
+The key difference between a library and a framework is "Inversion of Control".
+When you call a method from a library, you are in control. But with a framework, the control is inverted: the framework calls you.
+
+DOM- The DOM represents an HTML document with a logical tree structure. 
+     Each branch of the tree ends in a node, and each node contains objects.
+     DOM stands for Document Object Model. Document: Document is the HTML document. Object is the element/tag. html, head, body collectively called as model.
+
+What Is React?
+React is a free and open-source front-end JavaScript library for building user interfaces based on UI components. introduced in 2013.
+It is maintained by Meta (formerly Facebook) and a community of individual developers and companies.
+
+why React- 
+The main features that make React more than just a library.
+
+JSX stands for JavaScript XML. It allows us to write HTML inside JavaScript and place them in the DOM.
+
+Virtual DOM- React keeps a lightweight representation of the real DOM in the memory, and that is known as the virtual DOM. When the state of an object changes, the virtual DOM changes only that object in the real DOM, rather than updating all the objects.
+
+Components- Components are the building blocks of any React application, and a single app usually consists of multiple components. It splits the user interface into independent, reusable parts that can be processed separately.
+
+High Performance- React updates only those components that have changed, rather than updating all the components at once. This results in much faster web applications.
+
+
+Variables in React- 
+state- The state is a built-in React object that is used to contain information about the component.
+       The change in state can happen as a response to user action or system-generated events. It determines the behavior of the component and how it will render.
+
+Props- The props in React are the inputs to a component of React. They can be single-valued or objects having a set of values that will be passed to components of React 
+        We can say that props are the data passed from a parent component into a child component.
+
+
+What is proptypes-
+PropTypes are a mechanism to ensure that components use the correct data type and pass the right data
+
+What is key features-
+A “key” is a special string attribute you need to include when creating lists of elements in React. 
+Keys are used  to identify which items in the list are changed, updated, or deleted.
+
+
+class Componant-  A class component requires you to extend from React.Component and create a render function which returns a React element. React lifecycle methods can be used inside class components (for example, componentDidMount,componentDidUpdate and componentWillUnmount).   
+functional Componant- Before the introduction of Hooks in React, A functional component was just a plain JavaScript function that accepts props as an argument and returns a React element.
+and functional components were called as stateless components.
+React Hooks are the built-in functions that permit developers for using the state and lifecycle methods within React fuctional based components.
+Functional components use React hooks to handle state. 
+
+Why do we need to extend the React.Component class in class component?
+In React, by extending the React.Component class, it allows us to pass props to a user defined component and inherit methods from React.Component class,
+like the lifecycle methods (componentDidMount, componentDidUpdate, componentWillUnmount, render) and setState.
+
+
+When we use class Componant and Functional Componant?
+why hooks introduced?
+
+What is component composition in React?
+In React, we can make components more generic by accepting props, which are to React components what parameters are to functions.
+Component composition is the name for passing components as props to other components, thus creating new components with other components.
+
+-------------------------------------------------phases and ------lifecycle methods of components--------------------------------------------------------------------------------------------------------
+ReactJS | phases of React JS Components 
+
+Initialization: This is the stage where the component is constructed with the given Props and default state. This is done in the constructor of a Component Class.
+Mounting: Mounting is the stage of rendering the JSX returned by the render method itself.
+Updating: Updating is the stage when the state of a component is updated and the application is repainted.
+Unmounting: As the name suggests Unmounting is the final step of the component lifecycle where the component is removed from the page.
+
+Constructor- The constructor is a method used to initialize an object's state in a class. 
+             The constructor in a React component is called before the component is mounted.
+Super(): It is used to call the constructor of its parent class. This is required when we need to access some variables of its parent class. 
+         Props: It is a special keyword that is used in react and it used for passing data from one component to another.
+                
+Render-Render method used to render JSX of the componant in react. It returns during mouting and updating of your componant. 
+
+lifecycle methods of components-
+componentDidMount() Function: it is run after componant output render to the dom. ICall API at the time loading.
+shouldcomponantupdate()-Is invoked when a component determines changes to the DOM and returns a “true” or “false” value based on certain conditions.
+componentdidupdate() - It is invoked as soon as updating happens. it is updating dom in response to prop or state change 
+componanawillunmount()- execute just before the componant is unmounted and destroyed.
+
+-------------------------------------------------------------------Hooks---------------------------------------------------------------------------
+what is difference between usememo and useeffect?
+useEffect runs after a render happens, while useMemo runs before.
+------------------------------------------------------------------------------------------------------------------------------------------
+React Hooks
+use state - Using useState we can use states in functinal componant.we call the useState function and pass a default value as an argument.
+The useState function returns an array which contains two items item and setItem
+The item is the variable which will store our value and setItem is an updater function which will be responsible to update the item .
+useeffect- The useEffect helps to perform side effects in functional components. It removes the need for componentDidMount,componentDidUpdate and componentWillUnmount
+usecontext-This hook helps to build a context API, which itself is a mechanism used to share data without passing props. 
+
+-----------------------------------------------pure componants-----memoization----------------------------------------------------------------
+
+What is memoization?
+In simple terms, memoization is a process that allows us to cache the values of recursive function calls so that the next time the function is called with the same argument(s), the cached value is returned rather than having to re-compute the function.
+
+In the lifecycle of a component, React re-renders the component when an update is made.
+When React checks for any changes in a component, it may detect an unintended or unexpected change, this change in the React application will cause 
+it to re-render unnecessarily
+
+what are pure componants?
+ReactJS Pure Component Class compares current state and props with new props and states to decide whether the React component should re-render itself.
+class component requires you to extend from React.Purecomponent to make pure componant. PureComponent is used only in class component.
+we are using React memo and usememo hook in functional componant.
+
+React.memo()-is a higher-order component (HOC), which is a fancy name for a component that takes a component as a prop and returns a component that prevents 
+             a component from re-rendering if the props (or values within it) have not changed.  
+usememo()- 
+          useMemo takes a function and an array of dependencies.
+          useMemo hook will run the operation when one of the dependencies has been changed. If no changes has been made it will return stored value.
+
+------------------------------------------------------------------- Ref-------------------------------------------------------------------------------------------------
+
+Ref- Refs are a function provided by React to access the DOM element.They are used in cases where we want to change the value of a child component,
+     without making use of props.
+In class compnant we importing createref() method and binding it to variable in constructor.
+
+Useref-The useRef is a hook that allows to directly create a reference to the DOM element in the functional component.
+
+When to Use Refs
+There are a few good use cases for refs:
+
+Managing focus, text selection, or media playback.
+
+---------------------------------------------------------controlled/uncontrolled -----------HOC-----------------------------------------------------------------------------------------------
+
+What are controlled componants and uncontrolled componants?
+Controlled components in React are those in which form data is handled by the component’s state.
+The values of our input elements  are controlled by the React state; the state becomes the “single source of truth” for the input elements. 
+Uncontrolled components are those for which the form data is handled by the DOM itself. These components are not controlled by React state.
+
+Controlled components are predictable because the state of the form elements is handled by the component.
+Uncontrolled components are not predictable because, during the lifecycle of a component, the form elements can lose their reference and may be changed/affected by other sources
+Controlled components enable you to effectively employ form validation to your forms. It doesn’t matter what changes the form elements. Their values are safe in our local states, 
+so that’s where we perform our validation
+With controlled components, you are very much in control of your form elements’ values.
+
+
+what are HOC?
+A higher-order component (HOC) is a function that takes a component and returns a new component. 
+function you are passing is called a callback function, and the function where you are passing the callback function is called a higher-order(HOCs) function.
+This helps to keep components simple and enables re-usability. They are generally used when multiple components have to use a common logic. 
+
+----------------------------------------------------------------Redux---------Context API---------------------------------------------------------------------------------------------        
+
+What is Prop-drilling?
+Prop drilling refers to the process of sending props from a higher-level component to a lower-level component.
+prop drilling can become an issue in itself because of its repetitive code.We can solve this with a Context API.
+
+Context API- The React Context API allows us to produce the global data and share it across the application.
+Provider in Context:
+Context API consists of three major parts which are, 
+Create Context - create the context that going to share across the application.
+Provider - The component that provides the value.
+Consumer - A component that is consuming the value.
+			
+Redux-
+When JS application grows big, it becomes difficult for users to manage its state. redux solve this problem by managing applications
+state with single global object called store.
+Redux is simply a store to store the state of the variables in your app.
+There are three main part of redux
+Store: Holds the state of the application.
+Action: The source information for the store.
+Reducer: Specifies how the application's state changes in response to actions sent to the store.
+Function associate with redux
+createStore() – To create a store
+dispatch(action) -To change the state
+getState() – for getting current state of store.
+
+What is flux?
+Flux is the application architecture that Facebook uses for building web applications. 
+
+What is difference between flux and redux?
+Flux is an architecture and not a framework or library.
+Redux, on the other hand, is an open source JavaScript library
+Redux is a library inspired by Flux and can be considered as an implementation of Flux.
+
+What is difference between usecontext, Context api and Redux?
+If you are using Redux only to avoid passing props down to deeply nested components, then you could replace Redux with the Context API. It is exactly intended for this use case.
+If you need more advanced features, like predictable state container, async actions and so on, then choose Redux.
+
+-----------------------------------------babel-------------------------webpack -----------------------------------------------------------------------------------------------
+what is babel?
+Web browsers cannot read JSX directly. This is because they are built to only read regular JS objects and JSX is not a regular JavaScript object 
+For a web browser to read a JSX file, the file needs to be transformed into a regular JavaScript object. For this, we use Babel.
+
+Web browser works on JavaScript Engine and this JavaScript Engine understands only JavaScript. React aplication is made up of reusable and independent component. This component returns JSX which web browser doesn’t understand. Babel converts the JSX into JS object.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+what is webpack?
+
+Webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming,
+bundling, or packaging just about any resource or asset.
+-------------------------------------------------------------------inheritance --------------------------------------------------------------------------------
+How to acheive inheritance in react?
+Using the extends keyword, you can allow the current component to access all the React.component's properties.
+JavaScript inheritance is done through prototypes.
+
+How to improve perforamance of react aplication?
+Since, we write components for React application. There are times when React unnecessarily renders the component. Which increases the component loading time. To avoid this and increase the performance we use:
+React.memo for Component Memoization
+PureComponent
+React.Lazy for Lazy Loading Components
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+The main Components of React Router are:
+Routes is used to wrap the Route element.Routes job is to understand all of its children Route elements, and intelligently choose which ones are the best to render.
+Route- allows you to map your app's location to different React components.    
+Link: Link component is used to create links to different routes and implement navigation around the application.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+fetch vs axios
+Axios automatically stringifies the data when sending requests (though you can override the default behavior and define a different transformation mechanism).
+When using fetch(), however, you’d have to do it manually.
+To send data, fetch() uses the body property for a post request to send data to the endpoint, while Axios uses the data property
+
+synthetic function 
+In order to work as a cross-browser application, React has created a wrapper same as the native browser in order to avoid creating multiple 
+implementations for multiple methods for multiple browsers, creating common names for all events across browsers
+
+
+
+Authentication and authorization?
+authentication is the process of verifying who someone is, whereas authorization is the process of verifying what specific applications, files, and data a user has access to.
+
+Doctypes in HTML
+The DOCTYPE declaration is an instruction to the web browser about what version of HTML the page is written in. 
+
+--------------------------------------------------------React---Hooks & Methods--------------------------------------------------------------------------------------------------
+compnantDidMount(): The componentDidMount() method allows us to execute the React code when the component is already placed in the DOM (Document Object Model). This method is called during the Mounting phase of the React Life-cycle i.e after the component is rendered.
+
+static getDerivedStatsFromProps(): The getDerivedStateFromProps() method is used when the state of a component depends on changes of props.
+getDerivedStateFromProps(props, state) is a static method that is called just before render() method in both mounting and updating phase in React. It takes updated props and the current state as arguments.
+We have to return an object to update state or null to indicate that nothing has changed.
+
+shouldCompnantUpdate(): to increase the performance of React application by rerendering the component only when the props passed to it changes or on when certain conditions are met. Syntax: shouldComponentUpdate(nextProps, nextState)
+
+getSnapshotBeforeUpdate(): The getSnapshotBeforeUpdate() method is invoked just before the DOM is being rendered. It is used to store the previous values of the state after the DOM is updated.
+Any value returned by getSnapshotBeforeUpdate() method will be used as a parameter for componentDidUpdate() method. This function is always used along with the componentDidUpdate() method but vice-versa isn’t true. Syntax: getSnapshotBeforeUpdate(prevProps, prevState)
+
+componantDidUpdate(): The componentDidUpdate() method allows us to execute the React code when the component is updated. All the network requests that are to be made when the props passed to the component changes are coded here. Syntax: componentDidUpdate(prevProps, prevState, snapshot)
+
+ComponatWillUnmount(): The componentWillUnmount() method allows us to execute the React code when the component gets destroyed or unmounted from the DOM (Document Object Model). This method is called during the Unmounting phase of the React Life-cycle i.e before the component gets unmounted.
+All the cleanups such as invalidating timers, canceling network requests, or cleaning up any subscriptions that were created in componentDidMount() should be coded in the componentWillUnmount() method block.
+Tip: Never call setState() in componentWillUnmount() method.
+
+componantWillMount()
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Hooks 
+
+use state() - Using useState we can use states in functinal componant.we call the useState function and pass a default value as an argument.
+              The useState function returns an array which contains two items item and setItem
+              The item is the variable which will store our value and setItem is an updater function which will be responsible to update the item .
+
+useeffect- The useEffect helps to perform side effects in functional components. It removes the need for componentDidMount,componentDidUpdate and componentWillUnmount
+
+useRef() - The useRef is a hook that allows to directly create a reference to the DOM element in the functional component.
+
+useMemo() - useMemo takes a function and an array of dependencies.
+          useMemo hook will run the operation when one of the dependencies has been changed. If no changes has been made it will return stored value.
+
+useCallback()-The useCallback hook is used when you have a component in which the child is rerendering again and again without need.
+Pass an inline callback and an array of dependencies. useCallback will return a memoized version of the callback that only changes if one of the dependencies has changed. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders.
+Syntax:
+const memoizedCallback = useCallback(
+ () => {
+   doSomething(a, b);
+ },
+ [a, b],
+);
+
+useContext()-Context provides a way to pass data or state through the component tree without having to pass props down manually through each nested component.
+Context API uses Context. Provider and Context. Consumer Components pass down the data but it is very cumbersome to write the long functional code to use this Context API. So useContext hook helps to make the code more readable, less verbose and removes the need to introduce Consumer Component. The useContext hook is the new addition in React 16.8. 
+Syntax:
+const authContext = useContext(initialValue);
+
+
+useSelector- useSelector()​
+const result: any = useSelector(selector: Function, equalityFn?: Function)
+the useSelector hook gives us access to the global state anywhere in the application
+
+useDispatch()​
+const dispatch = useDispatch()
+The useDispatch hook lets us efficiently dispatch actions
+
+
+
+useStore()​
+const store = useStore()
+This hook returns a reference to the same Redux store that was passed in to the <Provider> component.
+
+useReducer()-The useReducer Hook is the better alternative to the useState hook and is generally more preferred over the useState hook when you have complex state-building logic or when the next state value depends upon its previous value or when the components are needed to be optimized.
+The useReducer hook takes three arguments including reducer, initial state, and the function to load the initial state lazily.
+Syntax:
+const [state, dispatch] = useReducer(reducer, initialArgs, init);
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Lazy Loading: It is a new function in react that lets you load react components lazily through code splitting without help from any additional libraries. Lazy loading is the technique of rendering only-needed or critical user interface items first, then quietly unrolling the non-critical items later.
+
+
+CustomHooks: Custom hooks are normal JavaScript functions whose names start with “use” and they may call other hooks(built-in or custom).you can make your own custom hooks and use it in your apps resulting in better readability and a reduced amount of code.  The main reason for which you should be using Custom hooks is to maintain the concept of DRY(Don’t Repeat Yourself) in your React apps. 
+
+call by value and call by reference?
+
+conditional rendering: Conditional rendering in React works the same way conditions work in JavaScript. Use JavaScript operators like if or the conditional operator to create elements representing the current state, and let React update the UI to match them.
+
+conditional routing: we want to render a component only if a state is true for example if a user is logged in
+<Route exact path="start" element={loggedIn ? <Start /> : <Navigate replace to={"/"} />}/>;
+
+
+What are error boundaries?
+Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that
+crashed. Error boundaries catch errors during rendering,in lifecycle methods, and in constructors of the whole tree below them.
+
+
+
+intercepters?
+
+Grid System ? Bootstrap Grid System allows up to 12 columns across the page. You can use each of them individually or merge them together for wider columns. You can use all combinations of values summing up to 12. You can use 12 columns each of width 1, or use 4 columns each of width 3 or any other combination.
+
+Div vs span ?
+
+React/css/BS Versions ?
+How do you style React components?
+Inline Styling
+JavaScript Object
+CSS styling
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

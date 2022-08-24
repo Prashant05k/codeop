@@ -1,0 +1,115 @@
+>>>>>>>>>>>>> GIT
+git --version
+git config --global user.name 'Anuj Kumar Sharma'
+git config --global user.email 'anulfdl@gmail.com'
+git config --global user.name
+git config --global user.email
+git config user.name
+git config user.email
+git coinfig --global --edit //Esc :wq
+mkdir GitPractice
+cd GitPractice
+git init
+ls 
+ls -a
+git status
+git add file.js
+git status
+git commit -m 'initial commit'
+git log
+//make some changes in the file.js
+git status
+//create new file in the same folder
+git status
+git add newfile.js
+git log
+git status
+git add .
+git commit -m 'second commit'
+git log
+git status
+git checkout c2d5906da0904318d2e8ff3bfb24039725f49eb4 //hash code for the commit you want to checkout// it will resotre the file before the changes
+git checkout master //back to the latest changes in the directory
+git checkout c2d5906da0904318d2e8ff3bfb24039725f49eb4
+git branch //master branch
+git log
+git checkout master
+git branch
+git branch dev
+git branch
+git checkout dev
+git checkout -b prashant/multiply
+//create file multiply.js
+git status
+git add multiply.js
+git commit -m 'added multiply.js'
+git checkout dev
+//now we are sure our feature is done and working fine. so we can add it to the dev branch
+git merge prashant/multiply
+git log
+git checkout master
+git log
+//now we are sure our feature is done and working fine. so we can add it to the master branch
+git merge dev
+git log
+
+//create file secret.txt //it can contain key or pswd which do not want to be pushed to the git server
+touch .gitignore or create file named as .gitignore
+git status 
+//add the secret.txt & .gitignore file to .gitignore
+git status //the file will be now ignored by git
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>> GITHUB
+//create new repo
+//to push into this dir find the git git origin
+
+git remote -v
+git remote add origin https://github.com/prashantguptarlj1/gitTestNew.git //copy from github/repo
+git remote -v
+git branch -M 'main'
+git push -u origin 'main'
+website: reload
+make changes in multiply file
+git add multiply.js
+git commit -m 'made changes in multiply filr'
+git push
+//check on website the lastest commit some times ago
+//to push dev branch do
+git checkout dev
+git push -u origin dev
+
+
+
+
+
+Cmd 1 : git checkout filename ( files changes revert to last commit )
+For all files : git checkout -f
+
+Cmd 2: git log (what commits you have written)
+For seeing specific no. of commit info : git log -p -no.ofcommits
+
+Cmd 3: git diff (compares working tree with staging area)
+
+Cmd 4: git diff --staged   (compares staging area with last commit)
+Cmd 5: git commit -a -m “msg” (skip staging area and direct commit the changes)
+
+Cmd 6: git rm –cached filename ( remove file  from git tracking tree)
+Cmd 7: git rm filename (remove file from hard disk)
+Cmd 8: git status -s (tells small status for working tree)
+Cmd 9 : git branch branchName ( create branch)
+Cmd 10: git branch (shows total branches and currently we are where)
+Cmd 11: git checkout branchName ( switched to this branch)
+Cmd 12: git checkout master (switched to master branch)
+Cmd 13: git merge branchName ( when you are in master branch then you can use it to merge your branch with master)
+Cmd 14: git checkout -b branchName ( branch is created and switched to this branch)
+
+
+Stashing
+git stash push -m “New tax rules” # Creates a new stash
+git stash list # Lists all the stashes
+git stash show stash@{1} # Shows the given stash
+git stash show 1 # shortcut for stash@{1}
+git stash apply 1 # Applies the given stash to the working dir
+git stash drop 1 # Deletes the given stash
+git stash clear # Deletes all the stas

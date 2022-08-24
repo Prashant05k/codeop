@@ -1,0 +1,235 @@
+//https://www.youtube.com/watch?v=QCQVttjblRs
+console.log([] + []) //nothing will print //convert to string
+
+console.log({} + {}) //[object Object][object Object]
+
+//---------------------------------------------------------------
+
+// function y(){
+//     console.log(this.length); //2
+//   }
+  
+//   var x = {
+//     length: 5,
+//     method: function(y){
+//       // console.log(arguments)
+//       arguments[0]();
+//     }
+//   };
+  
+//   x.method(y, 1) 
+
+//---------------------------------------------------------------
+
+// const x = 'constructor'
+// console.log(x[x](01)) //1 //type string
+
+//---------------------------------------------------------------
+
+console.log(0.1 + 0.2) //0.30000000000000004 //roundoff err
+//precision error 'coz machine understands only base 2 and it's base 10(decimals are in base 10)
+
+//---------------------------------------------------------------
+
+console.log(('HI').__proto__.__proto__.__proto__) //null
+//sting > Object > null // String is created by Object. Object is the final constructor in prototype object.
+
+//---------------------------------------------------------------
+
+// function returns total number of arguments without using loops
+
+// let x = function(){
+//     return [].slice.call(arguments).length
+//   }
+  
+//   console.log(x(1, 4, 5 , 5, 6))
+
+//---------------------------------------------------------------
+
+var A = {
+    x: function(){
+      console.log('x')
+    },
+    y: function(){
+      console.log('y')
+    },
+    z: function(){
+      console.log('z')
+    }
+  }
+  
+  A.x().y().z()
+  
+  //should pring x, y and z
+
+//   var A = {
+//     x: function(){
+//       console.log('x')
+//       return A //or return this
+//     },
+//     y: function(){
+//       console.log('y')
+//       return A //or return this
+//     },
+//     z: function(){
+//       console.log('z')
+//     }
+//   }
+  
+//   A.x().y().z()
+
+//   x
+//   y
+//   z
+
+//---------------------------------------------------------------
+
+
+let a = true;
+
+setTimeout(() => {
+  a = false
+}, 2000)
+
+while(a){
+  console.log('hello')
+}
+
+// hello will print for infinite times // code is stuck inside a while loops our settimout fn will not be able to execute
+
+//---------------------------------------------------------------
+
+// let c = 0, a = true;
+
+// setTimeout(() => {
+//   a = false
+//   // clearInterval(id)
+//   console.log('End of Execution')
+
+// }, 2000)
+
+// // while(a){
+// //   console.log(c++)
+// // }
+
+// let id = setInterval(() => {
+//   if (a) console.log(c++)
+// }, 200)
+
+//---------------------------------------------------------------
+
+function foo(){
+    return foo()
+  }
+  
+  foo()
+
+  //call stack will stack fn: foo() infinite times //Maximum call stack size exceeded
+
+//---------------------------------------------------------------
+
+
+// console.log('start')
+// let c = 0
+// function called(){
+//   while(c>=0 && c < 30000)
+//   console.log(c++)
+// }
+// console.log('fn will call')
+// console.time()
+// called()
+// console.timeEnd()
+
+// console.log('fn called and exec moved to settmeout')
+// // console.time()
+// setTimeout(function(){
+//   console.log('There')
+//   console.log('There')
+//   console.timeEnd()
+// }, 1000);
+// // console.time()
+
+// let cd = 0
+// function called1(){
+//   while(cd>=0 && cd < 30000)
+//   console.log(cd++)
+// }
+// console.log('fn will call')
+// console.time()
+// called1()
+// console.timeEnd()
+// console.log('To soon to say bye')
+// console.time()
+// // console.timeEnd()
+
+//---------------------------------------------------------------
+
+
+console.log('hi')
+
+setTimeout(() => {
+  console.log('timeout')
+}, 0)
+
+console.log('there')
+
+
+// hi
+// code.js:9 there
+// code.js:6 timeout
+//---------------------------------------------------------------
+// let c = 0
+// function called(d){
+//     // console.time()
+//     setTimeout(() => {
+//       console.log(++c, d)
+//       d+=1000
+//     //   console.timeEnd()
+//       if(d<=10000){
+//         called(d)
+//       }
+      
+//     }, d)
+//   }
+  
+//   called(1000)
+
+//---------------------------------------------------------------
+
+function logA() { console.log('A') }
+function logB() { console.log('B') }
+function logC() { console.log('C') }
+function logD() { console.log('D') }
+
+// Click the "RUN" button to learn how this works!
+logA();
+Promise.resolve().then(logC);
+setTimeout(logB, 0);
+Promise.resolve().then(logC);
+Promise.resolve().then(logC);
+Promise.resolve().then(logC);
+logD();
+
+//---------------------------------------------------------------
+
+function listener1(){
+    setTimeout(function () {console.log('1')})
+    Promise.resolve().then(function(){console.log('2')})
+    const promise = Promise.resolve()
+    setTimeout(function () {console.log('3')})
+    console.log(4)
+    setTimeout(function () {console.log('5')})
+  }
+  
+  function listener2(){
+    setTimeout(function () {console.log('6')})
+    Promise.resolve().then(function(){console.log('7')})
+    const promise = Promise.resolve()
+    setTimeout(function () {console.log('8')})
+    console.log(9)
+    setTimeout(function () {console.log('10')})
+  }
+  
+  listener1()
+  listener2()
+  

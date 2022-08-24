@@ -1,0 +1,140 @@
+abc = ["a","b","c","d"]
+arr=[1,2,3,4]
+output-{ a: 1, b: 2, c: 3, d: 4 }
+
+----------------------------------------------------------------------------------------------------------------------
+
+var arr1 = [3, 2, 5, 6, 8, 4, 9];
+output- var arr = [1,2,3,4,5,6,7,8,9,10]; 
+----------------------------------------------------------------------------------------------------------------------
+Sample array : var arr1=[3, ‘a’, ‘a’, ‘a’, 2, 3, ‘a’, 3, ‘a’, 2, 4, 9, 3];
+Output : a ( 5 times )
+------------------------------------------------------------------------------------------------------------------------
+
+[
+{position:3, text:‘this is third ’},
+{position:2, text:‘this is second ’},
+{position:1, text:‘this is first ’},
+{position:4, text:‘this is fourth ’}
+]
+arrange it according to position
+
+})
+
+---------------------------------------------------Guess the output-----------------------------------------------------------------
+var res1 = arr.map(item => item> 5); //[5*false, 5*true]
+var res2 = arr.filter(item => item> 5); // [6,7,8,9,10]
+res1? res2?
+
+7>6>5 //false
+-"34"+10 //-24
+"6"+8 //68
+
+let obj = {};
+['Zebra', 'horse'].forEach(k =>{
+  obj[k] ='undefined' 
+});
+console.log(obj)
+
+//{zebra: 'undefined',  horse: 'undefined' }
+
+let arr =[1,2,3,4];
+arr.length = 0;
+console.log(arr) //[]
+
+
+const a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+for (let i = 0; i < 10; i++) {
+  setTimeout(() => console.log(a[i]), 1000);
+}//1 2 3 4 5 6 7 8 9 10
+
+for (var i = 0; i < 10; i++) {
+  setTimeout(() => console.log(a[i]), 1000);
+} // undefined * 10
+
+
+const [ newCount, setCount] = useState(1)
+
+useEffect(()=>{
+console.log(newCount) //1
+},[]); 
+
+---------------------------------------------------------------------------------------------------------------------------
+
+*
+**
+***
+****
+implement without nested loop
+--------------------------------------------------------------------------------------------------------------------------
+Write a JavaScript program to find the most frequent item of an array. Go to the editor
+Sample array : var arr1=[3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
+Sample Output : a ( 5 times )
+
+
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%  Soln %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+let abc = ["a","b","c","d"]
+let arr=[1,2,3,4]
+// output-{ a: 1, b: 2, c: 3, d: 4 }
+
+let obj = {};
+
+if(abc.length !== arr.length){
+    throw new Error('Array size does not match')
+}
+
+for(let i in abc){
+    obj[abc[i]] = arr[i]
+}
+
+console.log(obj)
+//----------------------------------------------------------------------------
+
+var arr1=[3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3]
+
+let obj = {}
+
+for(let i of arr1){
+    obj[i] = (obj[i] || 0) + 1
+}
+
+let arr2 = Object.values(obj)
+let l=0;
+let index;
+for(let i in arr2){
+    if(arr2[i] > l){
+        l=arr2[i];
+        index=i
+    }
+}
+console.log(Object.keys(obj)[index])
+
+//----------------------------------------------------------------------------
+let arr =[
+    {position:3, text:'‘this is third ’'},
+    {position:2, text:'‘this is second ’'},
+    {position:1, text:'‘this is first ’'},
+    {position:4, text:'‘this is fourth ’'}
+    ]
+
+const op = arr.sort((a,b) => a.position - b.position)
+console.log(op)
+//----------------------------------------------------------------------------
+
+for(let i=1; i<5; i++){
+    setTimeout(() => {
+        for(let j=0; j<i; j++){
+            document.write('*')
+        }
+        document.write('</br>')
+    }, 1000)
+}
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
+

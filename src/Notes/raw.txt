@@ -1,0 +1,57 @@
+import { useEffect } from "react";
+
+useEffect(() => {
+  async function fetchApi(){
+    await fetch('https://abc.com/id')
+    .then(result => console.log(result))
+    .catch(err => console.log(err))
+  }
+  fetchApi()
+  return () => {
+    console.log('---calls when unmount---')
+    fetchApi()
+  }
+}, [])
+
+
+prop drilling, context api, hoc, api calls, controlled and uncontrolled components, pure component, redux- reducres, actions, state, deep copy and shallow copy, bubbling, this keyword in arrow and normal fn, ref, , unit testing never worked on ut,  pass data from parent to child and child to parent, hoc, can we pass react hook as a props? performance optimization
+
+error:
+warning: can't perform a react state update on an unmounted component
+there is no-op, but it indicates a memory leak in your application
+To fix, cancel all subscrioptions, 
+
+<a target='_blank'>
+
+
+var arr1=[3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3]
+
+let obj = {}
+
+for(let i of arr1){
+    obj[i] = (obj[i] || 0) + 1
+}
+let l=0, index;
+for(let i in obj){
+    if(obj[i] > l){
+        l = obj[i]
+        index = i
+    }
+}
+console.log(index)
+
+usereducer
+
+
+
+
+
+
+delegation and 
+
+
+GIT
+
+
+typeof([])
+

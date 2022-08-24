@@ -1,0 +1,445 @@
+>>> SumZero
+
+let array = [-5, -4, -3, -2, 0, 2, 3, 4, 6, 8];
+
+function getSumZero(){
+    for(let i=0; i<array.length; i++){
+        for(let j=i+1; j<array.length; j++){
+            if(array[i] + array[j] === 0){
+                return [array[i], array[j]]
+            }
+        }
+    }
+}
+
+console.log(getSumZero()) //Timecomplexity: o(n^2) quadratic
+---------------------------------------------------------
+let array = [-5, -4, -3, -2, 0, 2, 3, 4, 6, 8];
+
+function getSumZero(arr){
+    let l=0, r=arr.length -1;
+    while(l<r){
+        sum = arr[l] + arr[r]
+        if(sum === 0){
+            return [arr[l], arr[r]]
+        }else if(sum < 0){
+            l++
+        }else{
+            r--
+        }
+    }
+}
+
+console.log(getSumZero(array)) //o(n) linear tc
+
+================================================================
+
+>>> Anagram
+
+let str1 = 'hello', str2 = 'elllo';
+
+function isAnagram(str1, str2){
+    if(str1.length !== str2.length){
+        return false;
+    }
+    let counter = {}
+    for(let i of str1){
+        counter[i] = (counter[i] || 0) + 1
+    }
+    for(let j of str2){
+        if(!counter[j]){
+            return false
+        }
+        counter[j]-=1
+    }
+    return true
+}
+
+console.log(isAnagram(str1, str2)) //tc: we are not using nested loop therefore it's not quadratic tc, we are using loop 2 different time therefore it's linear tc o(n)
+
+//=================================================================
+>>> counting unique numbers from sorted array
+
+let arr= [1,2,3,3,3,3,4,4,5,6,6,6,7, 8, 9, 9]
+
+let i = 0, j=1, count = 1;
+
+if(arr.length <= 0){
+    throw new Error('Array is empty')
+}else{
+    while(j<arr.length){
+    
+        if(arr[i] === arr[j]){
+            j++
+        }else{
+            i++
+            count++
+            arr[i] = arr[j]
+        }
+    }
+}
+
+console.log(arr, count)
+
+//---------------------------------------------------
+console.log([...new Set(arr)])
+//-----------------------------------------------------
+let obj = {}
+
+for(let i of arr){
+    obj[i] = obj[i]
+}
+
+console.log(Object.keys(obj).length)
+
+//=======================================================
+>>> largerst sum of consecutive digits of unsorted array
+1,2,2,3
+let arr = [1,2,3,4, 4,2,1,2,2,3,3,4]
+let consecutive = 4, l =0;
+let times = arr.length - consecutive //1
+
+for(let i=0; i<=times; i++){
+    console.log(arr[i])
+    let s =0
+    for(let j=i; j<i+consecutive; j++){
+        s+=arr[j]
+    }
+    if(s > l){
+        l = s
+    }
+    console.log(s)
+}
+
+console.log(l)
+
+//===============================================================================
+>>> Find the index of given number in a sorted array
+
+let arr = [1,2,3,4,4,5,6,6,6,7]
+
+let findIndex = 7;
+
+if(arr.length <= 0){
+    throw new Error('Array is empty')
+}
+
+function index(){
+   for(let i=0; i<arr.length; i++){
+    if(arr[i] === findIndex){
+        return i
+    }
+} 
+return 'Number not found in array'
+}
+
+console.log(index())
+
+
+//==============================================================================
+>>> Divide and Conqurer technique
+//Find the index of given number in a sorted array.
+
+let arr = [1,2,3,4, 5 ,6, 7 ,8 , 9] 7
+   n       d       x
+1,2,3,4,5,6,7,8,9
+             n d   x
+1,2,3,4   6,7,8,9
+               d
+            7
+
+if(arr.length < 0){
+  throw new Error('Array is empty')
+}
+let min = 0, max = arr.length -1
+
+let mid, n=9
+
+function bindarySearch(){
+  while(min <= max){
+    mid = Math.floor((min + max)/2)
+console.log(`min ${arr[min]} mid ${arr[mid]} max ${arr[max]}`) //tc:binary o log(n) //better than linear
+    if(arr[mid] < n){
+        min = mid + 1
+        console.log(min)
+    }else if(arr[mid] > n){
+        max = mid - 1
+        console.log(max)
+    }else{
+        return mid
+    }
+}  
+return 'Number not found in an array'
+}
+
+console.log(bindarySearch())
+
+//==============================================================================
+>>> #7 Check square elements of another array
+const arr1 = [1, 2, 3, 4];
+const arr2 = [1, 9, 4, 16];
+
+function checkSquare(arr1, arr2) {
+  for (let i = 0; i < arr1.length; i++) {
+    let isSquare = false;
+    for (let j = 0; j < arr2.length; j++) {
+      if (arr1[i] * arr1[i] === arr2[j]) {
+        isSquare = true;
+        break;
+      }
+      if (j === arr2.length - 1) {
+        if (!isSquare) {
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+}
+
+console.log(checkSquare(arr1, arr2)); //tc: o(n)^2
+//----------------------------------------------------------
+#8
+const arr1 = [1, 2, 2, 4];
+const arr2 = [1, 4, 4, 16];
+
+function checkSquare(arr1, arr2) {
+  const map1 = {};
+  const map2 = {};
+  for (let i of arr1) {
+    map1[i] = (map1[i] || 0) + 1;
+  }
+  for (let i of arr2) {
+    map2[i] = (map2[i] || 0) + 1;
+  }
+  for (let i in map1) {
+    if (!map2[i * i] || map1[i] !== map2[i * i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(checkSquare(arr1, arr2)); //tc: o(n) -> linear
+
+//------------------ mine ---------------------------------
+const arr1 = [1, 2, 2, 4];
+const arr2 = [1, 4, 4, 16];
+
+function checkSquare(arr1, arr2) {
+  const obj = {};
+  for (let i of arr1) {
+    obj[i * i] = i;
+  }
+  for (let i of arr2) {
+    if (!obj[i]) return false;
+  }
+  return true;
+}
+
+console.log(checkSquare(arr1, arr2)); //tc: o(n)
+//==============================================================================
+>>> #9 Recursion
+
+let counter = 1;
+function recursion(num) {
+  if (counter > num) return;
+  console.log("counter: ", counter);
+  counter++;
+  recursion(10);
+}
+recursion(10);
+
+//==============================================================================
+>>> 10 Sorting using recursive fn/advance rf
+const array = [2, 5, 4, 1, 0, 8];
+
+let i = 0;
+let j = 1;
+function isSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > arr[i + 1]) return false;
+  }
+  return true;
+}
+function sortArray(arr) {
+  if (isSort(arr)) {
+    console.log(arr);
+    return;
+  } else {
+    if (arr[i] > arr[j]) {
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+      i = 0;
+      j = 1;
+    } else {
+      i++;
+      j++;
+    }
+    // console.log("not sorted");
+    sortArray(arr);
+  }
+}
+sortArray(array);
+//------ mine ---------------------------
+const arr = [2, 5, 4, 10, 2, 1, 8];
+let i = 0;
+function recur(i) {
+  console.log(i);
+  if (i === arr.length - 1) return;
+  let j = 0;
+  let temp;
+  while (j < arr.length - i) {
+    if (arr[j] > arr[j + 1]) {
+      [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+    }
+    j++;
+  }
+
+  i++;
+  recur(i);
+}
+recur(i);
+console.log(arr);
+//==============================================================================
+>>> 12 Helper Recursive Function
+
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+function findOdd(arr) {
+  let OddArr = [];
+  function findInThis(arr) {
+    if (arr.length === 0) {
+      return;
+    }
+    if (arr[0] % 2 !== 0) {
+      OddArr.push(arr[0]);
+    }
+    findInThis(arr.slice(1));
+  }
+  findInThis(arr);
+  return OddArr;
+}
+
+const res = findOdd(array);
+console.log(res);
+//==============================================================================
+>>> 13 Linear Search Algo
+let array = [
+  { uName: "abc", email: "abc@gmail.com" },
+  { uName: "def", email: "def@gmail.com" },
+  { uName: "ghi", email: "ghi@gmail.com" },
+  { uName: "jkl", email: "jkl@gmail.com" },
+];
+
+function Search(arr, value) {
+  for (let i of arr) {
+    if (i["uName"] === value) return true;
+  }
+  return false;
+}
+
+const res = Search(array, "ghi");
+console.log(res); //tc: linear o(n)
+//==============================================================================
+>>> Sorting Mine
+function bubbleSort(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+        c++;
+      if (arr[i] > arr[j]) {
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+        console.log(arr);
+      }
+    }
+  }
+}
+
+bubbleSort(array);
+console.log(array, c);
+//==============================================================================
+>>> 15 Bubble Sorting
+let array = [10, 2, 1, 32, 8, 4, 0];
+let c=0;
+function bubbleSort(arr) {
+  for (let i = arr.length; i > 0; i--) {
+    for (let j = 0; j < i - 1; j++) {
+        c++;
+      if (arr[j] > arr[j + 1]) {
+        // console.log(">>> ", arr);
+        [arr[j + 1], arr[j]] = [arr[j], arr[j + 1]];
+        // console.log(arr);
+      }
+    }
+  }
+}
+
+bubbleSort(array);
+console.log(array, c);
+//==============================================================================
+>>> 19 Maximum occuring character in a string
+let str = "hello world";
+let l = 0;
+let index;
+let obj = {};
+
+for (let i of str.toLowerCase()) {
+  obj[i] = (obj[i] || 0) + 1;
+}
+
+for (let i in obj) {
+  if (obj[i] > l) {
+    l = obj[i];
+    index = i;
+  }
+}
+console.log(index);
+//==============================================================================
+>>> 20 Palindrome
+let string = "helleh";
+
+let l = 0;
+let r = string.length - 1;
+
+function isPalindrome(str) {
+  while (l < r) {
+    if (str[l] !== str[r]) {
+      console.log("not a palindrome");
+      return;
+    }
+    l++;
+    r--;
+  }
+  console.log("it is palindrome");
+}
+
+isPalindrome(string);
+
+//==============================================================================
+>>> 
+//==============================================================================
+>>> 
+//==============================================================================
+>>> 
+//==============================================================================
+>>> 
+
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&  Mine  &&&&&&&&&&&&&&&&&&&&&&&&&&
+
+let array = [-5, -4, 2, 3, 4, 6, -3, -2, 0, 8];
+
+function findLargestUnsorted(){
+    let l = 0, ini, inj;
+    for(let i=0; i<array.length; i++){
+        for(let j=i+1; j<array.length; j++){
+            if(array[i] + array[j] > l){
+                l = array[i] + array[j]
+                ini = i, inj = j
+            }
+        }
+    }
+    return [array[ini], array[inj], l]
+}
+
+console.log(findLargestUnsorted())

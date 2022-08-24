@@ -1,0 +1,596 @@
+//%%%%%%%%%%%%%%%%%%%%  Tricky Quest  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// @linkedin https://www.linkedin.com/pulse/top-10-tricky-javascript-questions-i-used-ask-interviews-amit-pal
+//IIFE runs in local scope
+//1.Hoisting
+console.log('bar:', bar);
+bar=15;
+var foo =1;
+console.log('foo:', foo, 'bar:', bar);
+var bar;
+//--------------------------------------------------------
+greetings();
+var greetings = function(){
+    console.log('first greetings');
+}
+greetings();
+function greetings(){
+    console.log('second greetings')
+};
+greetings();
+//------------------------------------------------------
+var variable=10;
+(()=> {
+    console.log(variable);
+    variable=20;
+    console.log(variable);
+})();
+console.log(variable);
+var variable=30;
+//----------------------------------------------------------
+//this: is global scope/window
+var variable=10
+(()=> {
+    //local scope
+    variable_3=35;
+    console.log(variable_3);
+    var variable_3=45;//defined in local scope
+    variable_2 =15;//variable not defined with let, var and const is by default comes under this/global scope
+    console.log(variable);
+})();
+console.log(variable_2);
+console.log(variable_3);//functional scope
+var variable=30;
+//----------------------------------------------------------
+
+//=======//2.Closure and variable scope==================================
+
+
+for(let i=0; i<5; i++){//i is block scope
+    setTimeout(() => console.log(i), 0);
+}//01234
+
+
+// let i;//i is script scope
+// for(i=0; i<5; i++){
+//     setTimeout(() => console.log(i), 0);
+// }//5Code.js:23 5
+
+// let i;//i is script scope
+// for(i=0; i<5; i++){
+//     setTimeout(() => console.log(i), 100);
+// }//5Code.js:23 5
+
+// var i;//i is global scope
+// for(i=0; i<5; i++){
+//     setTimeout(() => console.log(i), 0);
+// }//5Code.js:23 5
+
+
+// for(var i=0; i<5; i++){//i is global scope
+//     setTimeout(() => console.log(i), 0);
+// }//5Code.js:23 5
+//---------------------------------------------------------------------
+let counter=function(){//counter is script scope
+    let k=0; //local scope/lexical scope
+    return ()=>k++;
+}();
+console.log(counter());
+console.log(counter());
+console.log(counter());
+//-----------------------------------------------------------------------------
+function createClosureArray(){//local scope
+    var badArr=[]; //
+    for(var index=0; index<5; index++){//closure(createClosureArray)
+        badArr[index]=function(){
+            return 'n=' +index;
+        };
+    }
+    return badArr;
+}
+
+var badArr=createClosureArray(); //globalscope
+for(var index in badArr){
+    console.log(badArr[index]());
+}
+
+// produce expected output as follows: "n = 1, n = 2, n = 3, n = 4, n = 5"
+
+function createClosureArray(){//local scope
+    var badArr=[]; //
+    for(let index=0; index<5; index++){//block scope
+        badArr[index]=function(){
+            return 'n=' +index;
+        };
+    }
+    return badArr;
+}
+
+var badArr=createClosureArray(); //globalscope
+for(var index in badArr){
+    console.log(badArr[index]());
+}
+//========= 3.What about "this" ========================================================================
+//Arrow functions don't have their own bindings to this, arguments or super, and should not be used as methods. It has global object(window) anywhere deffined
+//IIFE: inside ()(); this has global object(window) anywhere defined be it normal or arrrow fn
+
+
+var fullname = 'John Doe';
+var obj = {
+    fullname: 'Colin Ihrig',
+    prop: {
+        fullname: 'Aurelio De Rosa',
+        getFullnameN: function (){//this is object
+            console.log('getFullnameN', this)
+            return this.fullname; 
+        },
+        getFullnameA:  ()=>{//this is undefined
+            console.log('getFullnameA', this)
+            return this.fullname; 
+        },
+        getLastNameIIFEN: (function (){//local scope this is window
+            console.log('getLastNameIIFEN', this)
+            return this.fullname;
+        })(),
+        getLastNameIIFEA: ( ()=>{ //this is undefined
+            console.log('getLastNameIIFEA', this)
+            return this.fullname;
+        })(),
+        funcN: function() {//this: object {}
+            (function (){//local scope this is window
+                console.log('NfuncN', this)
+            })();
+            ( ()=>{ //this: object {} for IIFE  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                console.log('NfuncA', this)//this: object {} for Afn  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            })();
+        },
+        funcA: ()=> {//this is undefined in Afn
+            (function (){//local scope this is window
+                console.log('AfuncN', this)
+                // return this.fullname;
+            })();
+            ( ()=>{ //this is undefined
+                console.log('AfuncA', this)
+                // return this.fullname;
+            })();
+        },
+        
+    },
+    getMyNameN: function (){//this is object
+        console.log('getMyNameN', this)
+        return this.fullname;
+    },
+    getFirstNameA:  ()=>{//this is undefined
+        console.log('getFirstNameA', this)
+        return this.fullname;
+    },
+    getLastNameIIFEN: (function (){//local scope this is window
+        console.log('getLastNameIIFEN', this)
+        return this.fullname;
+    })(),
+    getLastNameIIFEA: ( ()=>{ //this is undefined
+        console.log('getLastNameIIFEA', this)
+        return this.fullname;
+    })()
+
+};
+console.log('0 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.prop.getFullnameN());
+console.log('1 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.prop.getFullnameA());
+console.log('2 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.prop.getLastNameIIFEN);
+console.log('3 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.prop.getLastNameIIFEA);
+console.log('4.1 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+obj.prop.funcN()
+console.log('4.2 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+obj.prop.funcA()
+console.log('5 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.getMyNameN());
+console.log('6 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.getFirstNameA());
+console.log('7 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.getLastNameIIFEN);
+console.log('8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+console.log(obj.getLastNameIIFEA);
+//===================================================================================================================
+var fullname = 'John Doe';
+var obj = {
+    fullname: 'Colin Ihrig',
+    prop: {
+        fullname: 'Aurelio De Rosa',
+        getFullnameN: function (){//this is object
+            console.log('getFullnameN', this)
+            return this.fullname; 
+        },
+        getFullnameA:  ()=>{//this is undefined
+            console.log('getFullnameA', this)
+            return this.fullname; 
+        },
+        getLastNameN: (function (){//local scope this is window
+            console.log('prop.getLastNameN', this)
+            return this.fullname;
+        })(),
+        getLastNameA: ( ()=>{ //this is undefined
+            console.log('prop.getLastNameA', this)
+            return this.fullname;
+        })()
+    },
+    getMyNameN: function (){//this is object
+        console.log('getMyNameN', this)
+        return this.fullname;
+    },
+    getFirstNameA:  ()=>{//this is undefined
+        console.log('getFirstNameA', this)
+        return this.fullname;
+    },
+    getLastNameN: (function (){//local scope this is window
+        console.log('getLastNameN', this)
+        return this.fullname;
+    })(),
+    getLastNameA: ( ()=>{ //this is undefined
+        console.log('getLastNameA', this)
+        return this.fullname;
+    })()
+
+};
+
+console.log(obj.prop.getFullnameN());
+console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.getMyNameN());
+console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.getLastNameN);
+console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+console.log(obj.prop.getLastNameN);
+console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+console.log(obj.prop.getFullnameA());
+console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.getFirstNameA());
+console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.getLastNameA);
+console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.prop.getLastNameA);
+
+
+
+
+//-------------------------------------------------------------------------------------------------------------
+var fullname = 'John Doe';
+var obj = {
+    fullname: 'Colin Ihrig',
+    prop: {
+        fullname: 'Aurelio De Rosa',
+        getFullnameN: function (){//this is object
+            console.log('getFullnameN', this)
+            return this.fullname; 
+        },
+        getFullnameA:  ()=>{//this is undefined
+            console.log('getFullnameA', this)
+            return this.fullname; 
+        }
+    },
+    getMyNameN: function (){//this is object
+        console.log('getMyNameN', this)
+        return this.fullname;
+    },
+    getFirstNameA:  ()=>{//this is undefined
+        console.log('getFirstNameA', this)
+        return this.fullname;
+    },
+    getLastNameN: (function (){//local scope this is window
+        console.log('getLastNameN', this)
+        return this.fullname;
+    })(),
+    getLastNameA: ( ()=>{ //this is undefined
+        console.log('getLastNameA', this)
+        return this.fullname;
+    })()
+
+};
+
+console.log(obj.prop.getFullnameN());
+console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.getMyNameN());
+console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.getLastNameN);
+console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+console.log(obj.prop.getFullnameA());
+console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.getFirstNameA());
+console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
+console.log(obj.getLastNameA);
+
+
+
+
+
+// var fullname = 'John Doe';
+// var obj = {
+//     fullname: 'Colin Ihrig',
+//     prop: {
+//         fullname: 'Aurelio De Rosa',
+//         getFullnameN: function (){//this is object
+//             return this.fullname; 
+//         },
+//         getFullnameA:  ()=>{//this is undefined
+//             return this.fullname; 
+//         }
+//     },
+//     getMyNameN: function (){//this is object
+//         return this.fullname;
+//     },
+//     getFirstNameA:  ()=>{//this is undefined
+//         return this.fullname;
+//     },
+//     getLastNameN: (function (){//local scope this is window
+//         return this.fullname;
+//     })(),
+//     getLastNameA: ( ()=>{ //this is undefined
+//         return this.fullname;
+//     })()
+
+// };
+
+// console.log(obj.prop.getFullnameN());
+// console.log(obj.getMyNameN());
+// console.log(obj.getLastNameN);
+
+// console.log(obj.prop.getFullnameA());
+// console.log(obj.getFirstNameA());
+// console.log(obj.getLastNameA);
+
+
+
+
+// var fullname = 'John Doe';
+// var obj = {
+//     fullname: 'Colin Ihrig',
+//     prop: {
+//         fullname: 'Aurelio De Rosa',
+//         getFullname: function (){//this is object
+//             return this.fullname; 
+//         }
+//     },
+//     getMyName: function (){//this is object
+//         return this.fullname;
+//     },
+//     getFirstName:  ()=>{//this is undefined
+//         return this.fullname.split(' ')[0];
+//     },
+//     getLastName: (function (){
+//         return this.fullname.split(' ')[1];
+//     })()
+
+// };
+
+// console.log(obj.prop.getFullname());
+// console.log(obj.getFirstName());
+// console.log(obj.getMyName());
+// console.log(obj.getLastName);
+
+//=============== 4.Difference between object creation by Object constructor and Object.create() =============================
+function ConstructorExample(){
+    this.foo = 'Object Constructore foo';
+}
+const obj=new ConstructorExample();
+
+const obj1 = Object.create({
+    foo: 'Object create foo'
+});
+
+const obj2 = {
+    foo: 'Simpoe Object'
+}
+console.log(obj);
+console.log(obj1)
+console.log(obj2)
+
+//============ 5.Writing code for Array or String polyfills ================================
+Array.prototype.showN = function (){
+    return this
+}
+
+Array.prototype.showA =  ()=>{
+    return this
+}
+
+Array.prototype.add = function (){
+    console.log
+    return this.reduce((a,b) => a + b)
+}
+
+
+
+console.log([1,2,3,4].add())
+console.log([1,2,3,4].showN())
+console.log([1,2,3,4].showA())
+
+//====== 5.Writing code for Array or String polyfills =========================================
+
+// let str = 'hello'
+
+// String.prototype.printString = function (){
+//     return this
+// }
+
+// String.prototype.reverseString = function (){
+//     return this.split('').reverse().join('')
+// }
+
+// console.log(str.printString())
+// console.log(str.reverseString())
+
+
+//-----------------------------------------------------------
+
+// Array.prototype.showN = function (){
+//     return this
+// }
+
+// Array.prototype.showA =  ()=>{
+//     return this
+// }
+
+// Array.prototype.add = function (){
+//     console.log
+//     return this.reduce((a,b) => a + b)
+// }
+
+
+
+// console.log([1,2,3,4].add())
+// console.log([1,2,3,4].showN())
+// console.log([1,2,3,4].showA())
+
+//----------------------------------------------------------
+
+// Object.prototype.printObject = function (){
+//     return this
+// }
+
+
+// Object.prototype.addDetails = function (){
+//     return {...this, city: 'Mumbai'}
+// }
+
+// let obj = { name: 'Prashnt', age: 24}
+
+// console.log(obj.printObject())
+// console.log(obj.addDetails())
+
+//========== 6.Evaluating the max/min value from an n-array using Math.max function =========================
+
+const arr = [1,3,5,6,3,5,2]
+console.log(Math.max(...arr))
+console.log(Math.min(...arr))
+console.log(Math.max.apply(null, arr))
+
+//============ 7.Swapping values of two variables using destructuring ==================================
+let a=5;
+let b=4;
+console.log(a,b);
+[a,b]=[b,a]
+console.log(a,b)
+//================== 8.Executing multiple promises sequentially  ========================
+
+function promiseDemo(){
+    return new Promise((resolve, reject) => {
+        if(true){
+            return resolve('Success')
+        }else{
+            return reject('Failure')
+        }
+    })
+}
+
+// const callPromise = promiseDemo()
+console.log(promiseDemo().then(res => console.log(res)).catch(err => console.log(err)))
+
+//-------------------------------------------------
+
+// const arr = [1,2,3,4,5]
+
+// function myPromise(num){
+//     return new Promise((resolve) => {
+//         setTimeout(() => {
+//             resolve(`Printing sequence: ${num}`);
+//         }, 1000)
+//     })
+// }
+
+// console.log(myPromise(arr))
+//writing a code that iterates the arr array in such a way that it should print each number one after another with at least a 1000ms time gap
+// let i=0
+// function callArray(){
+//     if(i < arr.length){
+//         myPromise(arr[i]).then(res => {
+//             console.log(res)
+//             i++
+//             callArray()
+//         }).catch(err => console.log(err))
+        
+//     }
+// }
+// callArray()
+
+
+//===================9.Writing a simpler code of Memoization function==========================================
+
+function memoize(){
+    let cache = {}
+    return function (n){
+        if(cache[n]){
+            return console.log('Cache: ', cache[n])
+        }else{
+            let i=0;
+            while(i<20000){
+                i++
+            }
+            cache[n]=n*n
+            return console.log('first time:', n*n)
+        }
+    }
+}
+
+const findSquare = memoize()
+
+console.time()
+findSquare(4)
+console.timeEnd()
+
+console.time()
+findSquare(3)
+console.timeEnd()
+
+console.time()
+findSquare(2)
+console.timeEnd()
+
+console.time()
+findSquare(4)
+console.timeEnd()
+
+console.time()
+findSquare(4)
+console.timeEnd()
+
+console.time()
+findSquare(2)
+console.timeEnd()
+
+console.time()
+findSquare(3)
+console.timeEnd()
+
+console.time()
+findSquare(4)
+console.timeEnd()
+
+
+//============= 10.Writing a code for debounce function ==========================================
+
+
+// function debounce(){
+//     let timer;
+    
+//     return function(){
+//         clearTimeout(timer)
+//         timer = setTimeout(() => {
+//             alert('I am called after 1s after you finished')
+//         }, 1000);
+//     }
+// }
+
+// let i=0;
+// // console.time()
+// let demo = debounce()
+
+// while(i<80000){
+//     demo()
+//     i++
+// }
+//-----------------------------------------------------------
+
+variable =10
+console.log(variable)//variable not defined with let, var and const is by default comes under this/global scope
+console.log(this.variable)

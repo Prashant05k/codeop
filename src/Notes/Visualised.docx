@@ -1,0 +1,102 @@
+
+//Event Loop
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//@visualized
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//Generator Fn
+// function* generatorfn(){
+//     yield 
+//     console.log('Its 1st')
+//     yield 
+//     console.log('Its 2nd')
+//     return console.log("Done!")
+//   }
+  
+//   const genObj = generatorfn()
+//   genObj.next()
+//   genObj.next()
+//   genObj.next()
+
+
+
+//prototypal inheritance
+// function Dog(name, breed, color){
+//   return [name, breed, color]
+// }
+
+// const desc = Dog('Oscar', 'Begel', 'Black')
+// console.log(desc)
+
+
+
+// function Dog(name, breed, color){
+//   this.name = name
+//   this.breed = breed
+//   this.color = color
+//   this.bark = function(){
+//     return 'Woof!'
+//   }
+// }
+
+// const dog1 = new Dog('Oscar', 'Begel', 'Black')
+// const dog2 = new Dog('Daisy', 'Lab', 'White')
+
+// console.log(dog1)
+// console.log(dog2)
+// console.log(desc)
+// console.log(desc.Dog())
+// console.log(desc.bark)
+// console.log(desc.bark())
+// console.log(desc.bark)
+// console.log(Dog)
+// console.log(Dog.prototype)
+// console.log(Dog.prototype)
+
+
+// class Dog {
+//   constructor(name, breed, color) {
+//   this.name = name
+//   this.breed = breed
+//   this.color = color
+//   this.bark = function () {
+//     return console.log(name, 'Woof!')
+//   }
+// }
+// bark1 = function () {
+//   return console.log(name, 'Woof!')
+// }
+// }
+
+// class chi extends Dog{
+//   constructor(name){
+//     super()
+//     this.name = name
+//   }
+//   bark2 = function(){
+//     return console.log(name, "Don't woof!")
+//   }
+// }
+
+// const dog1 = new Dog('Oscar', 'Begel', 'Black')
+// const dog2 = new Dog('Daisy', 'Lab', 'White')
+// const dog3 = new chi()
+
+// console.log(dog1)
+// console.log(dog2)
+// dog1.bark()
+// dog1.bark1()
+// dog3.bark2()
+
+
+// let obj = {
+//   name: "Prash",
+//   fun: function(){
+//     return "Object created"
+//   }
+// }
+
+// let me = Object.create(obj)
+// console.log(me)
