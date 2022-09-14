@@ -77,3 +77,5 @@ git branch -d branchName //to delte the branch -> gives error if branch is not m
 git branch -D branchName //no error even if branch is not merged and branch gets deleted
 
 control panel -> Credential Manager -> Generic Credentials //Git log out user from command line
+
+git pull origin branch_name
