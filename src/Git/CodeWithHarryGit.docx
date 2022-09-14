@@ -76,5 +76,4 @@ git branch --no-merged //to view not already merged branches
 git branch -d branchName //to delte the branch -> gives error if branch is not merged
 git branch -D branchName //no error even if branch is not merged and branch gets deleted
 
-
-
+control panel -> Credential Manager -> Generic Credentials //Git log out user from command line

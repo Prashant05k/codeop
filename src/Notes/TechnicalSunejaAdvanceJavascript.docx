@@ -1,226 +1,237 @@
 //%%%%%%%%%%%%%%%%%%%%%%%% Technical Suneja %%%%%%%%%%%%%%%%%%%%%
 
 //====================REst and Spread=============================
-// // Rest operator ...
+>> Rest operator ...
 
-// function restOp(a, b, c, ...other){
-//   console.log(other)
-//   // console.log(other[0])
-//   // console.log(arguments)
-//   // return a + b + c
-//   return a + b + c + other.reduce((a, b) => a + b)
-// }
+function restOp(a, b, c, ...other){
+  console.log(other)
+  console.log(other[0])
+  console.log(arguments)
+  return a + b + c
+  return a + b + c + other.reduce((a, b) => a + b)
+}
 
-// const res = restOp(2, 4, 5, 8 , 6, 6)
-// console.log(res)
+const res = restOp(2, 4, 5, 8 , 6, 6)
+console.log(res)
+-----------------------------------------------------------------
+>> rest with object
 
-// rest with object
+let obj = {
+  name: "Prashant",
+  age: 24,
+  city: "Mumbai"
+}
 
-// let obj = {
-//   name: "Prashant",
-//   age: 24,
-//   city: "Mumbai"
-// }
+let {name, age} = obj //Object Destructuring
+console.log(name, age)
 
-// let {name, age} = obj //Object Destructuring
-// console.log(name, age)
+let {name, ...remain} = obj
+console.log(remain)
 
-// let {name, ...remain} = obj
-// console.log(remain)
+let {...remain} = obj
+console.log(remain)
 
-// let {...remain} = obj
-// console.log(remain)
+-----------------------------------------------------------------
+//Spread Operator ...
 
+let names = ['a', 'b', 'c']
 
-// //Spread Operator ...
+let copya = [...names]
+console.log(copya)
 
-// let names = ['a', 'b', 'c']
+function retNames(n1, n2, n3){
+  console.log(n1, n2, n3)
+}
 
-// // let copya = [...names]
-// // console.log(copya)
+retNames(names[0], names[1], names[2])
+retNames(...names) //best
+-----------------------------------------------------------------
+let obj = {
+  name: "Prashant",
+  age: 24,
+  city: "Mumbai"
+}
 
-// function retNames(n1, n2, n3){
-//   console.log(n1, n2, n3)
-// }
+var newObj = {
+  ...obj,
+  age: 28
+}
 
-// retNames(names[0], names[1], names[2])
-// retNames(...names) //best
+console.log(newObj)
 
-// let obj = {
-//   name: "Prashant",
-//   age: 24,
-//   city: "Mumbai"
-// }
+-----------------------------------------------------------------
+let obj = {
+  name: "Prashant",
+  age: 24,
+  city: "Mumbai",
+};
 
-// var newObj = {
-//   ...obj,
-//   age: 28
-// }
+let name = "akash";
 
-// console.log(newObj)
-
+let { name: newName, ...remain } = obj;
+console.log(name, newName);
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-// Async JS //callback, Promises, Async & await
+Async JS //callback, Promises, Async & await
 
 //Problem statement
 let datas = [
-    {name: "Ajay", profession: "Engr"},
-    {name: "Vivek", profession: "Engr"}
-    ]
-    
-    function getdatas(){
-        setTimeout(()=>{
-          datas.forEach(data => console.log(data.name))
-      }, 500)
-    }
-    
-    // function createdata(newdata){
-    //     setTimeout(()=>{datas.push(newdata)}, 1000)
-    // }
-  
-    // getdatas()
-    // createdata({name: "Prash", profession: "Engr"})
-  
-    //op
-    // AjayVivek
-  
-  
-  // ====================  Callback  ============================
-   
-// function createdata(newdata, callback){
-//     setTimeout(()=>{
-//       datas.push(newdata); 
-//       callback()
-//     }, 1000)
-// }
+{name: "Ajay", profession: "Engr"},
+{name: "Vivek", profession: "Engr"}
+]
 
-// createdata({name: "Prash", profession: "Engr"}, getdatas)
+function getdatas(){
+    setTimeout(()=>{
+      datas.forEach(data => console.log(data.name))
+  }, 500)
+}
+
+function createdata(newdata){
+    setTimeout(()=>{datas.push(newdata)}, 1000)
+}
+
+getdatas()
+createdata({name: "Prash", profession: "Engr"})
+
+//op
+AjayVivek
+  
+  
+  ====================  Callback  ============================
+   
+function createdata(newdata, callback){
+    setTimeout(()=>{
+      datas.push(newdata); 
+      callback()
+    }, 1000)
+}
+
+createdata({name: "Prash", profession: "Engr"}, getdatas)
   
   //====================== Promises ==============================
   
-  // let myPromise = new Promise((resolve, reject)=>
-  // {	if (0){
-  // 	resolve("Successful")
-  // }
-  // else{
-  // 	reject("Failure")
-  // }
-  // 	})
+  let myPromise = new Promise((resolve, reject)=>
+  {	if (0){
+  	resolve("Successful")
+  }
+  else{
+  	reject("Failure")
+  }
+  	})
   
-  // myPromise.then(val => console.log(val)).catch(err => console.log(err))
+  myPromise.then(val => console.log(val)).catch(err => console.log(err))
   
   //-------------------------------------------------------------
   
-  // function createdata(newdata){
-  // 	return new Promise((resolve, reject) => {
-  //   	setTimeout(()=>{
-  //     if(1){
-  //     	datas.push(newdata);
-  //     	resolve()
-  //     }
-  //     else{
-  //     	reject("Failure")
-  //     }
+  function createdata(newdata){
+  	return new Promise((resolve, reject) => {
+    	setTimeout(()=>{
+      if(1){
+      	datas.push(newdata);
+      	resolve()
+      }
+      else{
+      	reject("Failure")
+      }
         
-  //   }, 1000)
-  //   })
+    }, 1000)
+    })
       
-  // }
+  }
   
-  // createdata({name: "Prash", profession: "Engr"}).then(getdatas).catch(err => console.log(err))
+  createdata({name: "Prash", profession: "Engr"}).then(getdatas).catch(err => console.log(err))
   
   
   
   //======================== Async Await =========================
   
   
-  // function createdata(newdata){
-  // return new Promise((resolve, reject)=>{
-  //   if(1){
-  //     setTimeout(()=>{
-  //     datas.push(newdata)
-  //     resolve()
-  // }, 2000)
-  //   }
-  //   else{
-  //     reject(console.log("Failure"))
-  //   }
-  // })
+  function createdata(newdata){
+  return new Promise((resolve, reject)=>{
+    if(1){
+      setTimeout(()=>{
+      datas.push(newdata)
+      resolve()
+  }, 2000)
+    }
+    else{
+      reject(console.log("Failure"))
+    }
+  })
     
-  // }
+  }
   
-  // async function start(){
-  // await createdata({name: "Prashant", profession: "Engr"});
-  // getdatas();
-  // }
+  async function start(){
+  await createdata({name: "Prashant", profession: "Engr"});
+  getdatas();
+  }
   
-  // start()
+  start()
   
 
-  //   async function start(){
-//   try{await createdata({name: "Prashant", profession: "Engr"});
-//   getdatas();}
-//   catch{(e) => console.log(e)}
-//   finally{console.log('Finally')}
+    async function start(){
+  try{await createdata({name: "Prashant", profession: "Engr"});
+  getdatas();}
+  catch{(e) => console.log(e)}
+  finally{console.log('Finally')}
 
 
   //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-// Closure
+Closure
 
-// function sum(a){
-//     console.log(a)
-//     let c = 4
-//     return function(b){
-//   	    return a + c + b
-//   }
-// }
+function sum(a){
+    console.log(a)
+    let c = 4
+    return function(b){
+  	    return a + c + b
+  }
+}
 
-// let store = sum(3)
-// console.log(store(2))
+let store = sum(3)
+console.log(store(2))
 
 //scope of a and c is called as lexical scope as it is accessible by inner function. The value of a and b is not lost and it is retained for inner fn is called as closure. A closure is a function having access to the parent scope.
 
 //-------------------------------------------------------------
-// var sum = function(a, b, c){
-// 	return {
-//   getSumTwo: function(){
-//   	return a + b
-//   },
-//   getSumThree: function(){
-//   	return a + b + c
-//   }
-//   }
-// }
-// console.log(sum(2, 4, 6))
-// let store = sum(2, 4, 6)
-// console.log(store.getSumTwo())
-// console.log(store.getSumThree())
+var sum = function(a, b, c){
+	return {
+  getSumTwo: function(){
+  	return a + b
+  },
+  getSumThree: function(){
+  	return a + b + c
+  }
+  }
+}
+console.log(sum(2, 4, 6))
+let store = sum(2, 4, 6)
+console.log(store.getSumTwo())
+console.log(store.getSumThree())
   
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-// Call, Apply & Bind
+Call, Apply & Bind
 
 //Call
 //scenerio 1
-// let userDetails1 = {
-//   name: "Prash",
-//   age: 24,
-//   prof: "Engr",
-//   printDetails: function(){
-//     console.log(this) //this is used for self refrencing. 
-//     console.log(this.name)
-//   }
-// }
+let userDetails1 = {
+  name: "Prash",
+  age: 24,
+  prof: "Engr",
+  printDetails: function(){
+    console.log(this) //this is used for self refrencing. 
+    console.log(this.name)
+  }
+}
 
-// userDetails1.printDetails()
+userDetails1.printDetails()
 
-// let userDetails2 = {
-//   name: "Akash",
-//   age: 22,
-//   prof: "Not Engr"
-// }
+let userDetails2 = {
+  name: "Akash",
+  age: 22,
+  prof: "Not Engr"
+}
 
-// userDetails1.printDetails.call(userDetails2) //fn borrowing
+userDetails1.printDetails.call(userDetails2) //fn borrowing
 
 //scenerio 2
 let userDetails1 = {
@@ -241,8 +252,8 @@ console.log(this) //this is used for self refrencing.
 console.log(this.name)
 }
 
-// printDetails.call(userDetails1)
-// printDetails.call(userDetails2)
+printDetails.call(userDetails1)
+printDetails.call(userDetails2)
 
 //with parameter
 printDetails1 = function(state, country){
@@ -250,121 +261,121 @@ console.log(this) //this is used for self refrencing.
 console.log(this.name, state, country)
 }
 
-// printDetails1.call(userDetails1, "Mumbai", "India")
-// printDetails1.call(userDetails2, "Delhi", "India")
+printDetails1.call(userDetails1, "Mumbai", "India")
+printDetails1.call(userDetails2, "Delhi", "India")
 
-// // Apply //pass parameter as an array
-// printDetails1.apply(userDetails1, ["Mumbai", "India"])
-// printDetails1.apply(userDetails2, ["Delhi", "India"])
+Apply //pass parameter as an array
+printDetails1.apply(userDetails1, ["Mumbai", "India"])
+printDetails1.apply(userDetails2, ["Delhi", "India"])
 
-//Bind // first store the value in a variable and use it later //create copy of a fn and invoke later
+//Bind first store the value in a variable and use it later //create copy of a fn and invoke later
 let newfun = printDetails1.bind(userDetails1, "Mumbai", "India")
-// console.log(newfun)
+console.log(newfun)
 newfun()
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-// Map, Reduce, Filter, Sort, Reduce
+Map, Reduce, Filter, Sort
 
-// const companies = [
-//     {name: "a", category: "pb", start: 1968},
-//     {name: "h", category: "sb", start: 1952},
-//     {name: "c", category: "pb", start: 1998},
-//     {name: "g", category: "sb", start: 1943},
-//     {name: "b", category: "sb", start: 1978}
-//   ]
-  
-//   const ages = [3, 4, 67, 98,87,56,34,43,54,6,9, 234, 657, 0]
-  
-  //forEach
-  // companies.forEach(function(company, index){
-  //   console.log(index, company)
-  // })
-  
-  // companies.forEach((company, index) => console.log(company))
-  
-  //filter
-  // const filtered = ages.filter(function(age){
-  //   return age >= 50
-  //   // if(age >= 50){
-  //   //   return true
-  //   // }
-  // })
-  
-//   const filtered = ages.filter(age => age>=50)
-  
-  // console.log(filtered)
-  
-  // const forCompany = companies.filter(company => company.category == "pb")
-  
-  // const forCompany = companies.filter(function(company){
-  //   // return company.category == "pb"
-  //   if(company.category == "pb")  return true
-  // })
-  // console.log(forCompany)
-  
-  
-  //---------------------------  map(HOFn)  -------------------------
-  
-  // companies.map(function(company){
-  //   console.log(company)
-  //   // console.log(company.name)
-  // })
-  
-  
-  // let res = companies.map(function(company){
-  //   // console.log(company)
-  //   // console.log(company.name)
-  //   return company
-  // })
-  
-  // console.log(res)
-  
-  // companies.map(company => console.log(company)) //Higher Order Function
-  
-  // const mapped = companies.map(company => {return `${company.category} ${company.name}`})
-  // console.log(mapped)
-  
-  // companies.map(company =>  console.log(`${company.category} ${company.name}`))
-  
-  //-------------------------sort----------------------------------
-  
-  // const sorted = companies.sort(function(c1, c2){
-  //   if(c1.start > c2.start){
-  //     return 1
-  //   }else{
-  //     return -1
-  //   }
-  // })
-  
-  // const sorted = companies.sort((c1, c2) => c1.start < c2.start ? 1 : -1)
-  
-  // const sorted = companies.sort(function(c1, c2){
-  //   return c1.start - c2.start
-  // })
-  
-  // const sorted = companies.sort((c1, c2) => c1.start - c2.start)
-  
-  // console.log(sorted)
-  
-  // const sortedAges = ages.sort((a, b) => a - b)
-  
-  // console.log(sortedAges)
-  
-  //--------------- reduce -----------------------------------------
-  
-  // let sum = ages.reduce(function(total, age){
-  //     return total + age
-  // })
-  
-  // let sum = ages.reduce(function(a, b){return a + b})
-  
-  // let sum = ages.reduce((a, b) => a + b)
-  
-  // console.log(sum)
+const companies = [
+    {name: "a", category: "pb", start: 1968},
+    {name: "h", category: "sb", start: 1952},
+    {name: "c", category: "pb", start: 1998},
+    {name: "g", category: "sb", start: 1943},
+    {name: "b", category: "sb", start: 1978}
+  ]
+
+const ages = [3, 4, 67, 98,87,56,34,43,54,6,9, 234, 657, 0]
+
+//forEach
+companies.forEach(function(company, index){
+  console.log(index, company)
+})
+
+companies.forEach((company, index) => console.log(company))
+
+//filter
+const filtered = ages.filter(function(age){
+  return age >= 50
+  if(age >= 50){
+    return true
+  }
+})
+
+const filtered = ages.filter(age => age>=50)
+
+console.log(filtered)
+
+const forCompany = companies.filter(company => company.category == "pb")
+
+const forCompany = companies.filter(function(company){
+  return company.category == "pb"
+  if(company.category == "pb")  return true
+})
+console.log(forCompany)
+
+
+//---------------------------  map(HOFn)-----------------------
+
+companies.map(function(company){
+  console.log(company)
+  console.log(company.name)
+})
+
+
+let res = companies.map(function(company){
+  console.log(company)
+  console.log(company.name)
+  return company
+})
+
+console.log(res)
+
+companies.map(company => console.log(company)) //Higher Order Function
+
+const mapped = companies.map(company => {return `${company.category} ${company.name}`})
+console.log(mapped)
+
+companies.map(company =>  console.log(`${company.category} ${company.name}`))
+
+//-------------------------sort----------------------------------
+
+const sorted = companies.sort(function(c1, c2){
+  if(c1.start > c2.start){
+    return 1
+  }else{
+    return -1
+  }
+})
+
+const sorted = companies.sort((c1, c2) => c1.start < c2.start ? 1 : -1)
+
+const sorted = companies.sort(function(c1, c2){
+  return c1.start - c2.start
+})
+
+const sorted = companies.sort((c1, c2) => c1.start - c2.start)
+
+console.log(sorted)
+
+const sortedAges = ages.sort((a, b) => a - b)
+
+console.log(sortedAges)
+
+//--------------- reduce ------------------------------------
+
+let sum = ages.reduce(function(total, age){
+    return total + age
+})
+
+let sum = ages.reduce(function(a, b){return a + b})
+
+let sum = ages.reduce((a, b) => a + b)
+
+console.log(sum)
 
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-// undefined and not defined
+undefined and not defined
 
 console.log(a)
 if(a===undefined){
@@ -380,105 +391,108 @@ console.log(a)
 (obj !== undefined || obj !== null ? obj.name : "")
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//Prototype
 
 //how to create an object 3 types
 
-// const obj = new Object({
-//   name: "Prashant"
-// })
+const obj = new Object({
+  name: "Prashant"
+})
 
-// const obj = new obj()
+const obj = new obj()
 
-// const obj = {
-//   name: "Prash"
-// }
-// console.log(obj) //check Protoype under console in browser
+const obj = {
+  name: "Prash"
+}
+console.log(obj) //check Protoype under console in browser
 
-// const obj2 = {
-//   age: 24,
-//   __proto__: obj
-// }
+const obj2 = {
+  age: 24,
+  __proto__: obj
+}
 
-// console.log(obj2) //check Protoype under console in browser
+console.log(obj2) //check Protoype under console in browser
 
-//-----------------------------------------------------------------
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//Prototype
 
-// const obj = {
-//   name: "Prash",
-//   getName: function(){
-//     return this.name
-//   }
-// }
-// console.log(obj) //check Protoype under console in browser
+const obj = {
+  name: "Prash",
+  getName: function(){
+    return this.name
+  }
+}
+console.log(obj) //check Protoype under console in browser
 
-// const obj2 = {
-//   age: 22,
-//   name: "Akash",
-//   __proto__: obj
-// }
+const obj2 = {
+  age: 22,
+  name: "Akash",
+  __proto__: obj
+}
 
-// console.log(obj2.getName()) //check Protoype under console in browser
+console.log(obj2.getName()) //check Protoype under console in browser
 
 //-----------------------------------------------------------------
 
 const obj = {
-    name: "Prash",
-    age: 24,
-    getName: function(){
-      return this.name
-    },
-    getAge: function(){
-      return this.age
-    }
+  name: "Prash",
+  age: 24,
+  getName: function(){
+    return this.name
+  },
+  getAge: function(){
+    return this.age
   }
-  // console.log(obj) //check Protoype under console in browser
-  
-  const obj2 = {
-    age: 22,
-    name: "Akash",
-    __proto__: obj
-  }
-  
-  // console.log(obj2.getName()) //check Protoype under console in browser
-  // console.log(obj2.age)
-  
-  const obj3 = {
-    prof: "Engr",
-    __proto__: obj2
-  }
-  
-  // console.log(obj3)
-  // console.log(obj3.name)
-  
-  // const arr = ["Prash"]
-  // console.log(arr) //check prototype/properties in browser
-  
-// const array = new Array()
-// console.log(array)
+}
+console.log(obj) //check Protoype under console in browser
 
-// const object = new Object()
-// console.log(object)
-
-// const string = new String()
-// console.log(string)
-
-// function Function(){}
-
-// const fun = new Function()
-// console.log(fun)
-  
-  //==================polyfill===================================
-  Array.prototype.Map = function(callback){
-    let arr=[]
-    for(let i=0; i<this.length; i++){
-        arr.push(callback(this[i]))
-    }
-    return arr
+const obj2 = {
+  age: 22,
+  name: "Akash",
+  __proto__: obj
 }
 
-// let arr=[3,4,5]
-// console.log(arr.Map(item => item*10))
+console.log(obj2.getName()) //check Protoype under console in browser
+console.log(obj2.age)
+
+const obj3 = {
+  prof: "Engr",
+  __proto__: obj2
+}
+
+console.log(obj3)
+console.log(obj3.name)
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+const arr = ["Prash"]
+console.log(arr) //check prototype/properties in browser
+  
+const array = new Array()
+console.log(array)
+
+const object = new Object()
+console.log(object)
+
+const string = new String()
+console.log(string)
+
+function Function(){}
+
+const fun = new Function()
+console.log(fun)
+  
+//==================polyfill===================================
+Array.prototype.Map = function(callback){
+  let arr=[]
+  for(let i=0; i<this.length; i++){
+      arr.push(callback(this[i]))
+  }
+  return arr
+}
+
+let arr=[3,4,5]
+console.log(arr.Map(item => item*10))
 //-------------------------------------------------
 Array.prototype.Filter = function(callback){
     let arr=[]
@@ -489,8 +503,8 @@ Array.prototype.Filter = function(callback){
     return arr
 }
 
-// let arr=[3,4,5]
-// console.log(arr.Filter(item => item>4))
+let arr=[3,4,5]
+console.log(arr.Filter(item => item>4))
 //-----------------------------------------------
 Array.prototype.Find = function(callback){
     for(let i=0; i<this.length; i++){
@@ -499,8 +513,8 @@ Array.prototype.Find = function(callback){
     }
 }
 
-// let arr=[3,4,5]
-// console.log(arr.Find(item => item>3))
+let arr=[3,4,5]
+console.log(arr.Find(item => item>3))
 //---------------------------------------------------
 Array.prototype.Reduce = function(callback){
     let c=0
@@ -532,166 +546,175 @@ const max = function (a, b) {
 const total = radius.Sum(max, 100);
 console.log(total);
 //------------------------------------------------------------------
-// Function.prototype.Bind = function (obj){
-//     // console.log(this)
-//     const val = this
-//     return function(){
-//         val.call(obj)
-//     }
-// }
+Function.prototype.Bind = function (obj){
+    console.log(this)
+    const val = this
+    return function(){
+        val.call(obj)
+    }
+}
 
-// let obj = {name: 'Prash', age: 24}
+let obj = {name: 'Prash', age: 24}
 
-// function print(){
-//     console.log(this)
-// }
+function print(){
+    console.log(this)
+}
 
-// const val = print.Bind(obj)
-// val()
+const val = print.Bind(obj)
+val()
   //---------------------------------------------------------------
   
-  // Array.prototype.show = function(){
-  // 	return this
-  // }
+  Array.prototype.show = function(){
+  	return this
+  }
   
-  // let arr1 = ["Delhi"];
-  // console.log(arr1.show())
-  
-  
-  // [[Prototype]]: Array(0)
-  // show: ƒ ()
-  // at: ƒ at()
-  // concat: ƒ concat()
-  // constructor: ƒ Array()
-  // copyWithin: ƒ copyWithin()
-  // entries: ƒ entries()
-
-
-//   let arr = [2, 4, 6]
-
-// Array.prototype.add = function(){
-//   return this.reduce((a, b) => a + b)
-// }
-
-// console.log(arr.add())
-
-// Array.prototype.convertToString = function(){
-//   return this.toString()
-// }
-
-// console.log(arr.convertToString())
-// console.log(typeof(arr.convertToString()))
-
-// Array.prototype.convertToObj = function(){
-//   let obj = {}
-//   this.forEach(item => {
-//     obj[item] = item
-//   })
-//   return obj
-// }
-
-// console.log(arr.convertToObj())
-  
-  //--------------------------------------------------------
-  
-  // Array.prototype.convertToObj = function (){
-  // 	let obj = {};
-  //   this.forEach(item => {
-  //   	obj[item]= item;
-  //   })
-  //   return obj;
-  // }
-  
-  // let arr = ["Delhi"]
-  // console.log(arr)
-  // console.log(arr.convertToObj())
-  
-  //---------------------constructor-------------------------
+  let arr1 = ["Delhi"];
+  console.log(arr1.show())
   
   
-// function myPrototype(name){
-//     this.name = name;
-// }
-
-// myPrototype.prototype = obj  
-
-//   //  object-------constructor
-// let proto = new myPrototype("Priya")
-// console.log(proto)
+  [[Prototype]]: Array(0)
+  show: ƒ ()
+  at: ƒ at()
+  concat: ƒ concat()
+  constructor: ƒ Array()
+  copyWithin: ƒ copyWithin()
+  entries: ƒ entries()
 
 
-// console.log(proto.getName())
-// console.log(proto.getAge())
+  let arr = [2, 4, 6]
+
+Array.prototype.add = function(){
+  return this.reduce((a, b) => a + b)
+}
+
+console.log(arr.add())
+
+Array.prototype.convertToString = function(){
+  return this.toString()
+}
+
+console.log(arr.convertToString())
+console.log(typeof(arr.convertToString()))
+
+Array.prototype.convertToObj = function(){
+  let obj = {}
+  this.forEach(item => {
+    obj[item] = item
+  })
+  return obj
+}
+
+console.log(arr.convertToObj())
+  
+//--------------------------------------------------------
+
+Array.prototype.convertToObj = function (){
+  let obj = {};
+  this.forEach(item => {
+    obj[item]= item;
+  })
+  return obj;
+}
+
+let arr = ["Delhi"]
+console.log(arr)
+console.log(arr.convertToObj())
+  
+//-----------------------------------------------------------
+  
+  
+function myPrototype(name) {
+  this.name = name;
+}
+const obj = {
+  name: "Prash",
+  age: 24,
+  getName: function () {
+    return this.name;
+  },
+  getAge: function () {
+    return this.age;
+  },
+};
+myPrototype.prototype = obj;
+
+//    object-------constructor
+let proto = new myPrototype("Priya");
+console.log(proto);
+
+console.log(proto.getName());
+console.log(proto.getAge());
+
   
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-// Map, Set, WeakSet and WeakMap
+Map, Set, WeakSet and WeakMap
 
 //set It contains only unique values
 //Object constructor
 
-// let arr = [1, 3, 4, 5]
-// let obj = new Set(arr)
-// console.log(obj)//check Protoype under console in browser
-// console.log(obj.size)
+let arr = [1, 3, 4, 5]
+let obj = new Set(arr)
+console.log(obj)//check Protoype under console in browser
+console.log(obj.size)
 
-// obj.add(5)
-// obj.add(5)
-// console.log(obj)
-// obj.delete(5)
-// console.log(obj)
+obj.add(5)
+obj.add(5)
+console.log(obj)
+obj.delete(5)
+console.log(obj)
 
-// var obj1 = {name: "Prash"}
-// obj.add(obj1)
-// console.log(obj)
-// console.log(obj.has(2))
-// console.log(obj.has(10))
+var obj1 = {name: "Prash"}
+obj.add(obj1)
+console.log(obj)
+console.log(obj.has(2))
+console.log(obj.has(10))
 
-// for(let new1 of obj){
-//   console.log(new1)
-// }
+for(let new1 of obj){
+  console.log(new1)
+}
 
-// obj.forEach(element => {
-//   console.log(element)
-// });
+obj.forEach(element => {
+  console.log(element)
+});
 
 //-----------------------------map ->key and values pair
 
-// let myMap = new Map([["a1", "Prash"], ["a2", "Akash"]])
-// console.log(myMap)
-// myMap.set("a2", "Ajay")
-// console.log(myMap)
-// myMap.delete("a2")
-// console.log(myMap)
-// console.log(myMap.get("a1"))
-// for(let [key, value] of myMap){
-//   console.log(`key ${key}, value ${value}`)
-// }
-// myMap.forEach((key, value) => console.log(key, value))
+let myMap = new Map([["a1", "Prash"], ["a2", "Akash"]])
+console.log(myMap)
+myMap.set("a2", "Ajay")
+console.log(myMap)
+myMap.delete("a2")
+console.log(myMap)
+console.log(myMap.get("a1"))
+for(let [key, value] of myMap){
+  console.log(`key ${key}, value ${value}`)
+}
+myMap.forEach((key, value) => console.log(key, value))
 
 //----------------------------------------WeakSet
 
-// let ws = new WeakSet();
-// console.log(ws)//check Protoype under console in browser, It is not iterable, less properties, Is used to store only object
+let ws = new WeakSet();
+console.log(ws)//check Protoype under console in browser, It is not iterable, less properties, Is used to store only object
 
-// var ob1 = {}
-// var ob2 = {}
-// ws.add(ob1)
-// ws.add(ob2)
-// ws.delete(ob2)
-// console.log(ws)
+var ob1 = {}
+var ob2 = {}
+ws.add(ob1)
+ws.add(ob2)
+ws.delete(ob2)
+console.log(ws)
 
 //--------------------------------------------WeakkMap
 
-// let wm = new WeakMap()
-// console.log(wm)//check Protoype under console in browser, less properties
+let wm = new WeakMap()
+console.log(wm)//check Protoype under console in browser, less properties
 
-// var ob1 = {name: "Prash"}
-// var ob2 = {}
-// wm.set(ob1, "Private")
-// wm.set(ob2, "Private DAta")
-// // wm.delete(ob2)
-// console.log(wm)
+var ob1 = {name: "Prash"}
+var ob2 = {}
+wm.set(ob1, "Private")
+wm.set(ob2, "Private DAta")
+wm.delete(ob2)
+console.log(wm)
 
 //weakset and weakmap works only for object related activity. Both are not iterable
 
@@ -699,98 +722,98 @@ console.log(total);
 //Hoisting
 
 
-// getName()
-// console.log(a)
+getName()
+console.log(a)
 
-// var a = 5
+var a = 5
 
-// function getName(){
-//   console.log("Print")
-// }
+function getName(){
+  console.log("Print")
+}
 
-// const user = () => {
-//   console.log("user fn")
-// }
-// user()
+const user = () => {
+  console.log("user fn")
+}
+user()
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //Concept of Script, (Global Execution Context)Global & Local Scope, Closure & call stack
 
-// //Script
-// let name = "Prash"
-// const age = 24
+//Script
+let name = "Prash"
+const age = 24
 
-// //Global
-// var city = "Delhi"
+//Global
+var city = "Delhi"
 
-// //Global
-// function a1() {
-//   //Local
-//   let name = "Akash"
-//   let age = 22
-//   let city = "Mumbai"
-//   function a2() {
-//     //Closure of a2 is a1 which contains name and city(Closure a1)
-//     //Local
-//     let age = 28
-//     function a3() {
-//       //Closure of a3 is a2 which contain age
-//       //Local
-//       let name = "Omkar"
-//       let city = "Nav Mum"
-//       function a4() {
-//         //Closure of a4 is a3 contain city
-//         //Local
-//         let age = 20
-//         let name = "Dinesh"
-//         console.log(name, age, city)
-//       }
-//       a4()
-//       console.log(name, age, city)
-//     }
-//     a3()
-//     console.log(name, age, city)
-//   }
-//   a2()
-//   console.log(name, age, city)
-// }
+//Global
+function a1() {
+  //Local
+  let name = "Akash"
+  let age = 22
+  let city = "Mumbai"
+  function a2() {
+    //Closure of a2 is a1 which contains name and city(Closure a1)
+    //Local
+    let age = 28
+    function a3() {
+      //Closure of a3 is a2 which contain age
+      //Local
+      let name = "Omkar"
+      let city = "Nav Mum"
+      function a4() {
+        //Closure of a4 is a3 contain city
+        //Local
+        let age = 20
+        let name = "Dinesh"
+        console.log(name, age, city)
+      }
+      a4()
+      console.log(name, age, city)
+    }
+    a3()
+    console.log(name, age, city)
+  }
+  a2()
+  console.log(name, age, city)
+}
 
-// a1()
-// console.log(name, age)
+a1()
+console.log(name, age)
 
 
 
-// let name = "Prash"
-// const age = 24
-// var city = "Delhi"
+let name = "Prash"
+const age = 24
+var city = "Delhi"
 
-// function a1() {
-//   let name = "Akash"
-//   let age = 22
-//   let city = "Mumbai"
+function a1() {
+  let name = "Akash"
+  let age = 22
+  let city = "Mumbai"
 
-//   function a2() {
-//     let age = 28
-//     function a3() {
-//       let name = "Omkar"
-//       let city = "Nav Mum"
-//       function a4() {
-//         let age = 20
-//         let name = "Dinesh"
-//         console.log(name, age, city)
-//       }
-//       a4()
-//       console.log(name, age, city)
-//     }
-//     a3()
-//     console.log(name, age, city)
-//   }
-//   a2()
-//   console.log(name, age, city)
-// }
+  function a2() {
+    let age = 28
+    function a3() {
+      let name = "Omkar"
+      let city = "Nav Mum"
+      function a4() {
+        let age = 20
+        let name = "Dinesh"
+        console.log(name, age, city)
+      }
+      a4()
+      console.log(name, age, city)
+    }
+    a3()
+    console.log(name, age, city)
+  }
+  a2()
+  console.log(name, age, city)
+}
 
-// a1()
-// console.log(name, age)
+a1()
+console.log(name, age)
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //Event Bubbling, Capturing, Propagation(Stop, Immediate, Prevent Default)
@@ -895,7 +918,7 @@ console.log(total);
 
 </html> */}
 
-// ====================Prevent Default============================
+====================Prevent Default============================
 
 {/* <html>
 
@@ -921,14 +944,14 @@ console.log(total);
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //==================================Currying fn================
 
-// normal
+normal
 function add1(a, b, c){
     return a + b + c
 }
 
 console.log(add1(2, 3, 4))
 
-// currying
+currying
 function add2(a){
     return function (b){
         return function (c){
@@ -939,11 +962,11 @@ function add2(a){
 
 console.log(add2(2)(3)(4))
 
-// currying using arrow fn
+currying using arrow fn
 let add3 = (a) => (b) => (c) => a + b + c;
 console.log("Arrow fn: ", add3(2)(3)(4))
 
-// currying in real life
+currying in real life
 
 let userObj = {
     name: "Prashant",
@@ -977,55 +1000,55 @@ console.log(infiniteCurrying(2)(4)(3)())
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //==================Memoization===========================
 
-// It is an optimization technique used to reduce the time-consuming calculations by saving previous input and output to something called cache and returning the result from cache.
+It is an optimization technique used to reduce the time-consuming calculations by saving previous input and output to something called cache and returning the result from cache.
 
 //Memoization
 
-// function sum(n){
-//     let total = 0;
-//     for(let i=0; i<=5; i++){
-//         total += i;
-//     }
-//     return total;
-// }
+function sum(n){
+    let total = 0;
+    for(let i=0; i<=5; i++){
+        total += i;
+    }
+    return total;
+}
 
-// console.time()
-// console.log(sum(5))
-// console.timeEnd()
+console.time()
+console.log(sum(5))
+console.timeEnd()
 
-// let sum = 0;
-// const calc = (n) => {
-//     for(let i=0; i<= n; i++){
-//         sum += i;
-//     }
-//     return sum;
-// }
+let sum = 0;
+const calc = (n) => {
+    for(let i=0; i<= n; i++){
+        sum += i;
+    }
+    return sum;
+}
 
-// const memoize = (fun) => {
-//     let cache = {};
-//     return function(...args){
-//         let n = args[0];
-//         if(n in cache){
-//             console.log("cache");
-//             return cache[n];
-//         }
-//         else{
-//             console.log("First time");
-//             let res = fun(n);
-//             cache[n]=res;
-//             return res;
-//         }
-//     }
-// }
+const memoize = (fun) => {
+    let cache = {};
+    return function(...args){
+        let n = args[0];
+        if(n in cache){
+            console.log("cache");
+            return cache[n];
+        }
+        else{
+            console.log("First time");
+            let res = fun(n);
+            cache[n]=res;
+            return res;
+        }
+    }
+}
 
-// console.time()
-// const eff = memoize(calc)
-// console.log(eff(5))
-// console.timeEnd()
+console.time()
+const eff = memoize(calc)
+console.log(eff(5))
+console.timeEnd()
 
-// console.time()
-// console.log(eff(5))
-// console.timeEnd()
+console.time()
+console.log(eff(5))
+console.timeEnd()
 
 function sum(n){
     let total = 0;
@@ -1082,38 +1105,38 @@ console.timeEnd()
 
 
 
-// function memoize(n){
-//     let cache = {}
-//     console.log(cache)
-//     if(n in cache){
-//         return console.log("Cache: ", cache[n])
-//     }
-//     else{
-//         let res = sum(n)
-//         cache[n] = res
-//         return console.log("First time: ", res)
-//     }
-// }
+function memoize(n){
+    let cache = {}
+    console.log(cache)
+    if(n in cache){
+        return console.log("Cache: ", cache[n])
+    }
+    else{
+        let res = sum(n)
+        cache[n] = res
+        return console.log("First time: ", res)
+    }
+}
 
-// console.time()
-// memoize(5)
-// console.timeEnd()
+console.time()
+memoize(5)
+console.timeEnd()
 
-// console.time()
-// memoize(5)
-// console.timeEnd()
+console.time()
+memoize(5)
+console.timeEnd()
 
-// console.time()
-// memoize(5)
-// console.timeEnd()
+console.time()
+memoize(5)
+console.timeEnd()
 
-// console.time()
-// memoize(4)
-// console.timeEnd()
+console.time()
+memoize(4)
+console.timeEnd()
 
-// console.time()
-// memoize(4)
-// console.timeEnd()
+console.time()
+memoize(4)
+console.timeEnd()
 
 
 
@@ -1197,79 +1220,124 @@ function Example() {
 export default Example
 //-----------------------------------------------------------------------------------
 
-// function App() {
+function App() {
 
-//     let c=0;
-//     function counter(){
-//       console.log("Counter: ", c++);
-//     }
+    let c=0;
+    function counter(){
+      console.log("Counter: ", c++);
+    }
   
-//     function debounce(fn, delay){
-//       let timer;
-//       return function(){
-//         if(timer){
-//           console.log("Timer: ", timer)
-//           // for(let i = 0; i <= timer; i += 10){
-//           //   console.log("Timer: ", timer)
-//           // }
-//           clearTimeout(timer)
-//         }
+    function debounce(fn, delay){
+      let timer;
+      return function(){
+        if(timer){
+          console.log("Timer: ", timer)
+          for(let i = 0; i <= timer; i += 10){
+            console.log("Timer: ", timer)
+          }
+          clearTimeout(timer)
+        }
         
         
         
-//         timer = setTimeout(() => fn(), delay)
-//       }
+        timer = setTimeout(() => fn(), delay)
+      }
       
-//     }
+    }
   
-//     const calledme = debounce(counter, 5000)
+    const calledme = debounce(counter, 5000)
   
-//     function Alert(){
-//       alert('I will execute only after specified time')
-//     }
+    function Alert(){
+      alert('I will execute only after specified time')
+    }
   
-//     function buttonDebounce(fn, d){
-//       let timer;
-//       return function(){
-//       if(timer) clearTimeout(timer)
-//       timer = setTimeout(() => fn(), d)
-//       }
-//     }
+    function buttonDebounce(fn, d){
+      let timer;
+      return function(){
+      if(timer) clearTimeout(timer)
+      timer = setTimeout(() => fn(), d)
+      }
+    }
   
-//     const callButton = buttonDebounce(Alert, 1000)
+    const callButton = buttonDebounce(Alert, 1000)
   
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <input type="text" onKeyUp={() => {calledme()}}/>
-//           <button onClick={() => {callButton()}}>Debounce</button>
-//         </header>
-//       </div>
-//     );
-//   }
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <input type="text" onKeyUp={() => {calledme()}}/>
+          <button onClick={() => {callButton()}}>Debounce</button>
+        </header>
+      </div>
+    );
+  }
 
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//Throttling
+import React from "react";
+
+function Example() {
+  function throttle(fn, d) {
+    let wait = false;
+    return function () {
+      console.log("button clicked");
+      if (!wait) {
+        wait = true;
+        setTimeout(() => {
+          wait = false;
+          fn();
+        }, d);
+      }
+    };
+  }
+
+  const callLater = throttle(function () {
+    console.log(
+      "I will run after defined time, no matter how many times you clicked on the button."
+    );
+  }, 3000);
+
+  return (
+    <>
+      <div>
+        <button onClick={callLater}>Throttle</button>
+      </div>
+    </>
+  );
+}
+
+export default Example;
+
+// class Example extends React.Component{
+//   render(){
+//     return (<>
+//       <div>Example</div>
+//     </>)
+//   }
+// }
+
+// export default Example;
 
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //Constructor
-// function Dog(name, breed, color){
-//   return [name, breed, color]
-// }
+function Dog(name, breed, color){
+  return [name, breed, color]
+}
 
-// const desc = Dog('Oscar', 'Begel', 'Black')
-// console.log(desc)
+const desc = Dog('Oscar', 'Begel', 'Black')
+console.log(desc)
 
 
 
-// function Dog(name, breed, color){
-//     this.name = name
-//     this.breed = breed
-//     this.color = color
-//     this.bark = function(){
-//       return 'Woof!'
-//     }
-//   }
+function Dog(name, breed, color){
+    this.name = name
+    this.breed = breed
+    this.color = color
+    this.bark = function(){
+      return 'Woof!'
+    }
+  }
   
-//   const desc = new Dog('Oscar', 'Begel', 'Black')
-//   console.log(desc)
+  const desc = new Dog('Oscar', 'Begel', 'Black')
+  console.log(desc)

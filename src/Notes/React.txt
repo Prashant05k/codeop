@@ -1,3 +1,7 @@
+> To collect data from multiple children, or to have two child components communicate with each other, you need to declare the shared state in their parent component instead. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.
+
+> When the Square components no longer maintain state, the Square components receive values from the Board component and inform the Board component when they’re clicked. In React terms, the Square components are now controlled components. The Board has full control over them.
+
 Whats is deiffernece between Librarary and Framwork?
 A library is just a collection of class definitions.
 framework  collection of libraries implementing a particular methodology
@@ -40,11 +44,14 @@ A “key” is a special string attribute you need to include when creating list
 Keys are used  to identify which items in the list are changed, updated, or deleted.
 
 
-class Componant-  A class component requires you to extend from React.Component and create a render function which returns a React element. React lifecycle methods can be used inside class components (for example, componentDidMount,componentDidUpdate and componentWillUnmount).   
+class Componant-  A class component requires you to extend from React.Component and create a render function which returns a React element. React lifecycle methods can be used inside class components (for example, componentDidMount,componentDidUpdate and componentWillUnmount).  
+
 functional Componant- Before the introduction of Hooks in React, A functional component was just a plain JavaScript function that accepts props as an argument and returns a React element.
 and functional components were called as stateless components.
 React Hooks are the built-in functions that permit developers for using the state and lifecycle methods within React fuctional based components.
 Functional components use React hooks to handle state. 
+
+class vs functional -> https://www.geeksforgeeks.org/differences-between-functional-components-and-class-components-in-react/
 
 Why do we need to extend the React.Component class in class component?
 In React, by extending the React.Component class, it allows us to pass props to a user defined component and inherit methods from React.Component class,
