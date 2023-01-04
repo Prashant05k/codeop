@@ -1,34 +1,76 @@
-abc = ["a","b","c","d"]
-arr=[1,2,3,4]
-output-{ a: 1, b: 2, c: 3, d: 4 }
+let abc = ["a", "b", "c", "d"];
+let arr = [1, 2, 3, 4];
+// output-{ a: 1, b: 2, c: 3, d: 4 }
+
+function createObj(arr1, arr2) {
+  if (arr1.length !== arr2.length) throw "Arrays are of not same length";
+
+  let obj = {};
+
+  for (let i = 0; i < arr1.length; i++) {
+    obj[arr1[i]] = arr2[i];
+  }
+
+  return obj;
+}
+
+let result = createObj(abc, arr);
+console.log(result);
+
+
+
 
 ----------------------------------------------------------------------------------------------------------------------
 
-var arr1 = [3, 2, 5, 6, 8, 4, 9];
-output- var arr = [1,2,3,4,5,6,7,8,9,10]; 
-----------------------------------------------------------------------------------------------------------------------
-Sample array : var arr1=[3, ‘a’, ‘a’, ‘a’, 2, 3, ‘a’, 3, ‘a’, 2, 4, 9, 3];
-Output : a ( 5 times )
 ------------------------------------------------------------------------------------------------------------------------
 
-[
-{position:3, text:‘this is third ’},
-{position:2, text:‘this is second ’},
-{position:1, text:‘this is first ’},
-{position:4, text:‘this is fourth ’}
-]
-arrange it according to position
+let array = [
+  { position: 3, text: "‘this is third ’" },
+  { position: 2, text: "‘this is second ’" },
+  { position: 1, text: "‘this is first ’" },
+  { position: 4, text: "‘this is fourth ’" },
+];
+// arrange it according to position
 
-})
+// let sorted = array.sort((a, b) => a.position - b.position);
+
+// console.log(sorted);
+
+function sortArray(arr) {
+  if (!Array.isArray(arr)) {
+    throw "It is not an array";
+  } else if (!arr.length) {
+    throw "Array is empty";
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i].position > arr[j].position) {
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+  }
+  return arr;
+}
+
+let result = sortArray(array);
+console.log(result);
+
 
 ---------------------------------------------------Guess the output-----------------------------------------------------------------
-var res1 = arr.map(item => item> 5); //[5*false, 5*true]
-var res2 = arr.filter(item => item> 5); // [6,7,8,9,10]
-res1? res2?
+let arr = [1, 2, 3, 4, 6, 7, 8, 9, 10];
 
+var res1 = arr.map((item) => item > 5); 
+var res2 = arr.filter((item) => item > 5); 
+
+console.log(res1);
+
+res1? res2? //[5*false, 5*true] // [6,7,8,9,10]
+------------------------------------------------------------
 7>6>5 //false
 -"34"+10 //-24
 "6"+8 //68
+------------------------------------------------------------
 
 let obj = {};
 ['Zebra', 'horse'].forEach(k =>{
@@ -37,21 +79,25 @@ let obj = {};
 console.log(obj)
 
 //{zebra: 'undefined',  horse: 'undefined' }
-
+------------------------------------------------------------
 let arr =[1,2,3,4];
 arr.length = 0;
 console.log(arr) //[]
-
+------------------------------------------------------------
 
 const a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 for (let i = 0; i < 10; i++) {
   setTimeout(() => console.log(a[i]), 1000);
-}//1 2 3 4 5 6 7 8 9 10
+}
 
 for (var i = 0; i < 10; i++) {
   setTimeout(() => console.log(a[i]), 1000);
-} // undefined * 10
+} 
 
+//1 2 3 4 5 6 7 8 9 10
+// undefined * 10
+
+------------------------------------------------------------
 
 const [ newCount, setCount] = useState(1)
 

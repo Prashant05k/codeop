@@ -1,0 +1,178 @@
+setTimeout(console.log('hi'), 0)
+setTimeout(console.log('bye'), 100)
+
+//JavaScript performs concatenation from left to right
+
+console.log(1+'2'+'2')                                                                   //122
+console.log(1+ +'2'+'2')                                                                 //32
+console.log(1+ +'2'+ +'2')                                                               //5
+console.log(1+ -'2'+'2'+ '2')                                                            //-122
+console.log('a' - 'b' + '2')                                                             //NaN2
+console.log('a' - 'b' + 2)                                                               //NaN
+
+console.log(null == undefined);                                                          //true
+console.log(null === undefined);                                                         //false | typeof null is an object
+console.log(2 + true);                                                                   //3
+console.log(4 + 3 + 2 + "1");                                                            //91
+console.log("1" + 2 + 4);                                                                //124
+console.log(-"34" + 10);                                                                 //-24
+console.log(0.1 + 0.2 != 0.3);                                                           //true
+
+
+>>>>> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_Types
+
+
+console.log("undefined + 4", undefined + 4);                                                                  //NaN
+console.log("null + 4", null + 4);                                                                  //4
+console.log("{} + 4", {} + 4);                                                                  //[object Object]4
+console.log("[] + 4", [] + 4);                                                                  //4
+console.log("function(){} + 4", function () {} + 4); //function () {}4
+console.log(`'2' + 4`, "2" + 4);                                                                  //24
+
+console.log("");
+console.log("");
+console.log("");
+console.log("");
+console.log("");
+console.log("");
+
+const n = null;
+console.log(n * 32);                                                                  // Will log 0 to the console
+
+var a;
+console.log(`The value of a is ${a}`);                                                 // The value of a is undefined
+
+console.log(`The value of b is ${b}`);                                                 // The value of b is undefined
+var b;
+                                                // This one may puzzle you until you read 'Variable hoisting' below
+
+console.log(`The value of c is ${c}`);                                                 // Uncaught ReferenceError: c is not defined
+
+let x;
+console.log(`The value of x is ${x}`);                                                 // The value of x is undefined
+
+console.log(`The value of y is ${y}`);                                                 // Uncaught ReferenceError: y is not defined
+let y;
+
+let a;
+a + 2;                                                  // Evaluates to NaN
+
+if (Math.random() > 0.5) {
+  const y = 5;
+}
+console.log(y);                                                  // ReferenceError: y is not defined
+
+if (true) {
+  var x = 5;
+}
+console.log(x);                                                  // x is 5
+
+/**
+ * Example 1
+ */
+console.log(x === undefined);                                                 // true
+var x = 3;
+
+/**
+ * Example 2
+ */
+                                                // will return a value of undefined
+var myvar = 'my value';
+
+(function() {
+  console.log(myvar);                                                 // undefined
+  var myvar = 'local value';
+})();
+
+console.log(x);                                                 // ReferenceError
+const x = 3;
+
+-------------------------------------------------------
+var text = "outside";
+function logText() {
+  console.log(text);                                         // undefined
+  var text = "inside";
+  console.log(text);                                         // inside
+}
+logText();
+
+--------------------------------
+
+const fn = (a, ...num, x, y) => {
+    console.log(x, y)                                     // Uncaught SyntaxError: Rest parameter must be last formal parameter
+}
+
+--------------------------------------------------------
+// Doesn't throw ReferenceError
+console.log(baz) // undefined
+
+// Throws 'TypeError: baz is not a function'
+baz();
+
+/* Function expression */
+var baz = function() {
+  console.log('bar2');
+};
+--------------------------
+// THIS WILL CAUSE AN ERROR
+function f() {};
+const f = 5;
+
+// THIS WILL CAUSE AN ERROR TOO
+function f() {
+  const g = 5;
+  var g;
+
+  //statements
+}
+
+>>>>>>>>>>>>>>> Data type conversion
+
+x = 'The answer is ' + 42 // "The answer is 42"
+y = 42 + ' is the answer' // "42 is the answer"
+z = '37' + 7 // "377"
+
+'37' - 7 // 30
+'37' * 7 // 259
+
+'1.1' + '1.1' // '1.11.1'
+(+'1.1') + (+'1.1') // 2.2
+// Note: the parentheses are added for clarity, not required.
+
+--------------
+const unusualPropertyNames = {
+  '': 'An empty string',
+  '!': 'Bang!'
+}
+
+console.log(unusualPropertyNames['']);  // An empty string
+console.log(unusualPropertyNames['!']); // Bang!
+
+----------------------------------------------------------
+const b = new Boolean(false);
+if (b) {
+  // this condition evaluates to true
+}
+if (b == true) {
+  // this condition evaluates to false
+}
+
+-------------------------------------------------------
+function f() {
+  try {
+    console.log(0);
+    throw 'bogus';
+  } catch (e) {
+    console.log(1);
+    return true;    // this return statement is suspended
+                    // until finally block has completed
+    console.log(2); // not reachable
+  } finally {
+    console.log(3);
+    return false;   // overwrites the previous "return"
+    console.log(4); // not reachable
+  }
+  // "return false" is executed now
+  console.log(5);   // not reachable
+}
+console.log(f()); // 0, 1, 3, false

@@ -17,3 +17,23 @@ function bigFunc(element){
 
 console.log(bigFunc(599)); 
 console.log(bigFunc(670));
+
+----------------------------------------------------
+//Nested Object destructuring
+
+const car = {
+  brand: "ferrari",
+  type: "sportscar",
+  engine: {
+    horsepower: 600,
+    liters: 4,
+    fuel: "gas",
+  },
+  wheels: 4,
+};
+
+const { horsepower } = car.engine;
+console.log(horsepower)
+
+const {engine: {horsepower}} = car;
+console.log(horsepower)

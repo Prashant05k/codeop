@@ -29,7 +29,7 @@ let {name, ...remain} = obj
 console.log(remain)
 
 let {...remain} = obj
-console.log(remain)
+console.log(rema in)
 
 -----------------------------------------------------------------
 //Spread Operator ...

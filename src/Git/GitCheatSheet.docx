@@ -24,7 +24,7 @@ Staging files
 git add file1.js        // -------  Stages a single file
 git add file1.js file2.js        // -------  Stages multiple files
 git add *.js        // -------  Stages with a pattern
-git add .        // -------  Stages the current directory and all its content
+git add .     // -------  Stages the current directory and all its content
 
 Viewing the status
 git status        // -------  Full status
@@ -212,3 +212,14 @@ Amending the last commit
 git commit --amend
 Interactive rebasing
 git rebase -i HEAD~5
+
+
+//done changes in remote repo
+$ git fetch 
+$ git show 0d879d3 //to see specific commit coming from remote
+$ git log origin/master ^master //to see the commits coming from remote
+$ git fetch && git diff HEAD @{u} //to see what file has changed and what content in that file has changed remotely
+
+$ git fetch && git diff HEAD @{u} --name-only //to see what file has got changes
+$ git show 0d879d3:file1.txt //to see what changes specific file has got from remote
+

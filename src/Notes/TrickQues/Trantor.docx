@@ -1,0 +1,51 @@
+var list = Array(50001).join('1.1').split('.');
+var nextListItem = function() {
+    var item = list.pop();
+    if (item) {
+        nextListItem()
+
+    }
+};
+nextListItem();
+
+>>>>>>>>>>>>>>
+
+var list = Array(50001).join('1.1').split('.');
+console.log(list)
+var nextListItem = function() {
+    var item = list[list.length - 1];
+    delete list[list.length - 1]
+    if (item) {
+        nextListItem()
+        console.log(list)
+    }
+};
+
+nextListItem();
+
+--------------------------------------------------------------
+
+for (var i = 0; i < 5; i++) {
+	var btnIndex = i+1;
+  var btn = document.createElement('button');
+  btn.appendChild(document.createTextNode('Button ' + btnIndex));
+  btn.addEventListener('click', function(){ console.log(i); });
+  document.body.appendChild(btn);
+}
+
+>>>>>>>>>>>>>>>>>>>
+
+for (var i = 0; i < 5; i++) {
+  
+  var btnIndex = i + 1;
+  var btn = document.createElement("button");
+  btn.appendChild(document.createTextNode("Button " + btnIndex));
+  btn.addEventListener("click", (function(j){
+    return function(){
+        console.log(j)
+    }
+  })(i));
+  document.body.appendChild(btn);
+}
+
+--------------------------------------------------------------

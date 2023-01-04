@@ -1,0 +1,73 @@
+//the value of this depends on how you call the fn.
+In a method, this refers to the owner object.
+In a function, this refers to the globalobject.
+An arrow function does not have its own this; the this value of the enclosing execution context is used.
+
+function login() {
+  console.log(this);
+}
+login(); //window object
+
+new login(); //login object
+
+const user = {
+  login() {
+    console.log(this);
+  },
+};
+
+user.login(); //user object
+
+const userLogin = user.login;
+userLogin(); //window object
+
+---------------------------------------------------------------------
+function Person() {
+    this.age = 0;
+  
+    setInterval(() => {
+        console.log(this)
+      this.age++; // `this` properly refers to the person object
+    }, 1000);
+  }
+  
+new Person();
+----------------------------------------------------------------------
+
+function Person() {
+  this.age = 0;
+  function login() {
+    console.log("login", this);
+  }
+  const logout = () => {
+    console.log("logout", this);
+  };
+  login();
+  logout();
+  setTimeout(() => {
+    console.log(this);
+
+    //   this.age++; // `this` properly refers to the person object
+  }, 1000);
+}
+
+new Person();
+---------------------------------------------------------------------
+function Person() {
+  this.age = 0;
+  function login() {
+    console.log("login", this);
+  }
+  const logout = () => {
+    console.log("logout", this);
+  };
+  setTimeout(() => {
+    console.log(this);
+    login();
+    logout();
+    //   this.age++; // `this` properly refers to the person object
+  }, 1000);
+}
+
+new Person();
+

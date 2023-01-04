@@ -7,16 +7,12 @@ for(let i=0; i<1024*1024*108;i++){
 console.log('done')
 
 
-
-
-
-
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CALL BY VALUE 
 
 let u1 = 'kavya'
 let u2 = u1
 u2 = 'kavita'
-console.log(u1, u2)
+console.log(u1, u2) //kavya kavita
 
 
 let u1 = 'kavya'
@@ -27,43 +23,46 @@ function updateName(val){
 console.log(updateName(u1))
 console.log(u1)
 
-
-
+//kavita
+//kavya
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> CALL BY REFERENCE
 
-let u1 = {name: 'kavya'}
-let u2 = {}
-u2=u1
-u2.name = 'kavita'
-console.log(u1)
-console.log(u2)
+let u1 = { name: "kavya" };
+let u2 = {};
+u2 = u1;
+u2.name = "kavita";
+console.log(u1); //{name: 'kavita'}
+console.log(u2); //{name: 'kavita'}
 
+---------------------------------------
 
-let u1 = {name: 'kavya'}
-function updateName(val){
-    val.name = 'kavita'
-    return val
+let u1 = { name: "kavya" };
+function updateName(val) {
+  val.name = "kavita";
+  return val;
 }
-console.log(updateName(u1))
-console.log(u1)
+console.log(updateName(u1)); //{name: 'kavita'}
+console.log(u1); //{name: 'kavita'}
 
+-----------------------------------------
 
 let u1 = ['kavya']
 let u2 = u1
 u2[0] = 'kavita'
-console.log(u1, u2)
-
+console.log(u1, u2) //['kavita'] ['kavita']
+-------------------------------------------
 
 let u1 = ['kavya']
 function updateName(val){
     val[0] = 'kavita'
     return val
 }
-console.log(updateName(u1))
-console.log(u1)
+console.log(updateName(u1)) //['kavita']
+console.log(u1) //['kavita']
 
+-------------------------------------------------
 
 
 

@@ -1,15 +1,15 @@
 
 An arrow function does not have its own this; the this value of the enclosing execution context is used.
 >>
-const obj = {
-  abc: function () {
-    console.log(this);
-  },
-  def: () => console.log(this), //execution context is Global
-};
+// const obj = {
+//   abc: function () {
+//     console.log(this);
+//   },
+//   def: () => console.log(this),
+// };
 
-obj.abc();
-obj.def();
+// obj.abc(); //execution context is local
+// obj.def(); //execution context is Global
 
 >>
 function Person() {
@@ -23,23 +23,50 @@ function Person() {
   
 new Person();
 
+>>
+function getName(){
+    this.name = 'bc'
+    return () => this;
+}
+
+const newFun = new getName();
+console.log(newFun())
+----------------------------------------
+
+function getName(){
+    this.name = 'bc'
+    return function(){
+        return this;
+    };
+}
+
+const newFun = new getName();
+
+const fun = new newFun();
+console.log(fun)
+
 ---------------------------------------------------------------------------------------------------
-"use strict"; Defines that JavaScript code should be executed in "strict mode".
-You can use strict mode in all your programs. It helps you to write cleaner code, like preventing you from using undeclared variables.
+"use strict"; 
+Defines that JavaScript code should be executed in "strict mode".
+It helps you to write cleaner code, like preventing you from using undeclared variables.
+
+"use strict";
+a = 5;
+console.log(a);
+
 
 Data types in javascript-
 
-Primitive
-Number
-String 
-Boolian
-null
-undefined
+Primitive Data type:
+Number, String, Boolean, null, undefined
 
-Reference Data type-
+Reference Data type:
+Array, Object, Function
+
 Array- Array is data structure that contains list of elements of same data types.
 Objects - Object is an collection of key-value pairs.Each key-value pair is called a property.
 function-  Set of statements that performs a task. it should take some input and return an output
+
 Not defined-It means a variable declared, but no value has been assigned. undefined is type
 null- Null in JavaScript is an assignment value. You can assign it to a variable. null is obeject.
 
@@ -131,7 +158,7 @@ This keyword- In a method, this refers to the owner object.
               
 
 Hoisting-Hoisting is JavaScript's default behavior of moving all declarations
-         to the top of the current scope Variables defined with let and const are hoisted to the top of the block, but not initialized
+         to the top of the current scope. Variables defined with let and const are hoisted to the top of the block, but not initialized
 
 How to stop hoisting?
 Hoisting may result into bugs
@@ -180,7 +207,6 @@ If one parameter only −
 let add = a=>a+22;
 
 Difference bewteen normal function and arrow function?
-Syntax
 Arrow functions do not have an arguments binding.
 Unlike regular functions, arrow functions do not have their own this.
 Arrow functions can never have duplicate named parameters, whether in strict or non-strict mode.
@@ -198,7 +224,7 @@ new arrow()
 
 abc {fn: 'normal'}
 Code.js:15 Uncaught TypeError: arrow is not a constructor
----------------------------------------------------------------------synchronus--- asynchronus-----------------------------------------------
+---------------------------------------------synchronus--- asynchronus-----------------------------------------------
 
 Callback Functions-A callback function is a function that is passed as an argument to another function,to be “called back” at a later time.
 

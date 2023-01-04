@@ -1,6 +1,46 @@
-> To collect data from multiple children, or to have two child components communicate with each other, you need to declare the shared state in their parent component instead. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.
 
-> When the Square components no longer maintain state, the Square components receive values from the Board component and inform the Board component when they’re clicked. In React terms, the Square components are now controlled components. The Board has full control over them.
+<!DOCTYPE html> // Tells the browser that we are using HTML5.
+If document type is not mentioned, browser will go to Quirks mode. Quirks mode depends upon the web browser version, If is older version then this will not support HTML5 tags (Example: header tag, footer tag, section tag,...)
+
+> super vs super(props) https://www.geeksforgeeks.org/whats-the-difference-between-super-and-superprops-in-react/#:~:text=Super()%3A%20It%20is%20used,from%20one%20component%20to%20another.
+
+class demo {
+  constructor(fname, lname) {
+    this.fname = fname;
+    this.lname = lname;
+  }
+  getName = () => {
+    console.log(this);
+  };
+}
+
+class newDemo extends demo {
+  constructor(fname, lname, age) {
+    super(fname, lname);
+    this.age = age;
+  }
+
+  getDetails = () => {
+    console.log(this);
+  };
+}
+
+const child1 = new demo("Prashant", "Gupta");
+child1.getName();
+
+const child2 = new newDemo("Prashant", "Gupta", 24);
+child2.getDetails();
+
+
+>useEffect cleanup : The useEffect Hook is built in a way that we can return a function inside it and this return function is where the cleanup happens. The cleanup function prevents memory leaks and removes some unnecessary and unwanted behaviors.
+useEffect(() => {
+    API.subscribe()
+    return function cleanup() {
+        API.unsubscribe()
+    }
+})
+
+> To collect data from multiple children, or to have two child components communicate with each other, you need to declare the shared state in their parent component instead. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.
 
 Whats is deiffernece between Librarary and Framwork?
 A library is just a collection of class definitions.
@@ -339,7 +379,47 @@ CSS styling
 
 
 
+>> setState in render method
 
+import { useEffect } from "react";
+import { useState } from "react";
+import React from "react";
+
+function Example() {
+  const [flag, setFlag] = useState(true);
+
+  useEffect(() => {
+    setFlag(true);
+  });
+
+  console.log(flag);
+  return (
+    <>
+      <div>{flag ? setFlag(false) : null}</div>
+    </>
+  );
+}
+
+export default Example;
+
+class Example extends React.Component {
+  state = {
+    flag: true,
+  };
+
+  render() {
+    console.log(this.state.flag);
+    if (this.state.flag) {
+      this.setState({ flag: false }, () => {
+        this.setState({ flag: true });
+      });
+    }
+
+    return <>{}</>;
+  }
+}
+
+export default Example;
 
 
 
